@@ -4,12 +4,14 @@
     "classnames": "registry:dt/classnames#0.0.0+20160316155526",
     "es6-shim": "registry:dt/es6-shim#0.31.2+20160602141504",
     "jasmine": "github:DefinitelyTyped/DefinitelyTyped/jasmine/jasmine.d.ts#dc9dabe74a5be62613b17a3605309783a12ff28a",
+    "node": "registry:env/node#6.0.0+20161105011511",
     "react": "github:DefinitelyTyped/DefinitelyTyped/react/react.d.ts#dc9dabe74a5be62613b17a3605309783a12ff28a",
     "react-addons-test-utils": "github:DefinitelyTyped/DefinitelyTyped/react/react-addons-test-utils.d.ts#dc9dabe74a5be62613b17a3605309783a12ff28a",
     "react-dom": "github:DefinitelyTyped/DefinitelyTyped/react/react-dom.d.ts#dc9dabe74a5be62613b17a3605309783a12ff28a"
   },
   "dependencies": {
     "express": "registry:npm/express#4.14.0+20160925001530",
+    "lodash": "registry:npm/lodash#4.0.0+20161015015725",
     "react-redux": "registry:npm/react-redux#4.4.0+20160207114942",
     "react-router": "registry:npm/react-router#2.4.0+20160628165748"
   }

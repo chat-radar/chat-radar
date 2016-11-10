@@ -3,6 +3,7 @@
     "axios": "^0.9.1",
     "es6-promise": "^3.1.2",
     "express": "^4.14.0",
+    "lodash": "^4.16.6",
     "parse-server": "^2.2.25-beta.1",
     "react": "^15.0.1",
     "react-dom": "^15.0.1",
