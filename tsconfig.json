@@ -9,8 +9,12 @@
   },
   "compileOnSave": false,
   "filesGlob": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
+    "server/**/*.ts",
+    "server/**/*.tsx",
+    "client/**/*.ts",
+    "client/**/*.tsx",
+    "shared/**/*.ts",
+    "shared/**/*.tsx",
     "!typings/**",
     "!node_modules/**"
   ]

@@ -1,0 +1,7 @@
+#!/usr/bin/env node
+'use strict';
+
+process.title = 'chat-radar';
+
+require('ts-node/register');
+require('../server');
