@@ -5,9 +5,11 @@
     "es6-shim": "registry:dt/es6-shim#0.31.2+20160602141504",
     "jasmine": "github:DefinitelyTyped/DefinitelyTyped/jasmine/jasmine.d.ts#dc9dabe74a5be62613b17a3605309783a12ff28a",
     "node": "registry:env/node#6.0.0+20161105011511",
+    "parse": "registry:dt/parse#1.2.19+20160906141533",
     "react": "github:DefinitelyTyped/DefinitelyTyped/react/react.d.ts#dc9dabe74a5be62613b17a3605309783a12ff28a",
     "react-addons-test-utils": "github:DefinitelyTyped/DefinitelyTyped/react/react-addons-test-utils.d.ts#dc9dabe74a5be62613b17a3605309783a12ff28a",
-    "react-dom": "github:DefinitelyTyped/DefinitelyTyped/react/react-dom.d.ts#dc9dabe74a5be62613b17a3605309783a12ff28a"
+    "react-dom": "github:DefinitelyTyped/DefinitelyTyped/react/react-dom.d.ts#dc9dabe74a5be62613b17a3605309783a12ff28a",
+    "winston": "registry:dt/winston#0.0.0+20161108133445"
   },
   "dependencies": {
     "bluebird": "registry:npm/bluebird#3.4.1+20160909132857",

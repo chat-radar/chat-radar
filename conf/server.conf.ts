@@ -4,6 +4,8 @@ require('dotenv').config({ silent: true });
 
 export = {
 
+  'logger console level': process.env['LOG_LEVEL'] || 'verbose',
+
   'web port': process.env['WEB_PORT'] ? parseInt(process.env['WEB_PORT']) : 1337,
 
   'parse databaseURI': process.env['PARSE_MONGODB'] || 'mongodb://localhost:27017/chatradar',

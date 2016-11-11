@@ -19,7 +19,7 @@ class Application {
     return value;
   }
 
-  boot(): Promise<void> {
+  async boot(): Promise<void> {
     return Promise.resolve();
   }
 

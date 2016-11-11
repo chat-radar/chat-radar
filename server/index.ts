@@ -3,11 +3,21 @@
 import Express = require('express');
 const { ParseServer } = require('parse-server');
 import Bluebird = require('bluebird');
+import logger = require('winston');
 import app = require('../lib/application');
 import config = require('../conf/server.conf');
 
 // Initialize application
 app.init(config);
+
+// Setup logger
+logger.remove(logger.transports.Console);
+logger.add(logger.transports.Console, {
+  handleExceptions: true,
+  humanReadableUnhandledException: true,
+  level: app.get('logger console level'),
+  colorize: true,
+});
 
 // Setup web server
 const web = Express();
@@ -22,11 +32,12 @@ const parse = new ParseServer({
 
 web.use('/api', parse);
 
+app.set('logger', logger);
 app.set('web', web);
 app.set('parse', parse);
 
 app.boot().then(() => {
   (<any>Bluebird.promisifyAll(web)).listenAsync(app.get('web port'));
 }).then(() => {
-  console.log('Server listening at %s', app.get('parse serverURL'));
+  logger.info('Server listening at %s', app.get('parse serverURL'));
 });
