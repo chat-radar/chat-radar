@@ -19,6 +19,10 @@ class Application {
     return value;
   }
 
+  boot(): Promise<void> {
+    return Promise.resolve();
+  }
+
 }
 
 export = Application

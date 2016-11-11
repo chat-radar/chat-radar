@@ -1,6 +1,8 @@
 {
   "dependencies": {
     "axios": "^0.9.1",
+    "bluebird": "^3.4.6",
+    "dotenv": "^2.0.0",
     "es6-promise": "^3.1.2",
     "express": "^4.14.0",
     "lodash": "^4.16.6",
