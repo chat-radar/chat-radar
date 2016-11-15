@@ -10,15 +10,9 @@
     "noImplicitAny": false,
     "preserveConstEnums": true
   },
-  "compileOnSave": false,
-  "filesGlob": [
-    "server/**/*.ts",
-    "server/**/*.tsx",
-    "client/**/*.ts",
-    "client/**/*.tsx",
-    "lib/**/*.ts",
-    "lib/**/*.tsx",
-    "!typings/**",
-    "!node_modules/**"
+  "exclude": [
+    "typings",
+    "node_modules",
+    "app.backup"
   ]
 }

@@ -10,17 +10,15 @@ module.exports = {
     preLoaders: [
       {
         test: /\.tsx$/,
-        exclude: /node_modules/,
-        loader: 'tslint'
-      }
+        loader: 'tslint',
+      },
     ],
-
     loaders: [
       {
         test: /.json$/,
         loaders: [
-          'json'
-        ]
+          'json',
+        ],
       },
       {
         test: /\.(css|scss)$/,
@@ -28,53 +26,48 @@ module.exports = {
           'style',
           'css',
           'sass',
-          'postcss'
-        ]
+          'postcss',
+        ],
       },
       {
-        test: /\.tsx$/,
-        exclude: /node_modules/,
+        test: /\.tsx?$/,
         loaders: [
-          'react-hot',
-          'ts'
-        ]
-      }
-    ]
+          'ts-loader',
+        ],
+      },
+    ],
   },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.NoErrorsPlugin(),
     new HtmlWebpackPlugin({
-      template: conf.path.src('index.html')
+      template: conf.path.src('index.html'),
     }),
-    new webpack.HotModuleReplacementPlugin()
+    // new webpack.HotModuleReplacementPlugin(),
   ],
   postcss: () => [autoprefixer],
   debug: true,
   devtool: 'source-map',
   output: {
-    path: path.join(process.cwd(), conf.paths.tmp),
-    filename: 'index.js'
+    path: path.join(process.cwd(), conf.paths.dist),
+    filename: 'chat-radar.js',
   },
   resolve: {
     extensions: [
       '',
       '.webpack.js',
       '.web.js',
-      '.js',
       '.ts',
-      '.tsx'
-    ]
+      '.tsx',
+      '.js',
+    ],
   },
   entry: [
-    'webpack/hot/dev-server',
-    'webpack-hot-middleware/client',
-    `./${conf.path.src('index')}`
+    // 'webpack/hot/dev-server',
+    // 'webpack-hot-middleware/client',
+    `./${conf.path.src('index')}`,
   ],
-  ts: {
-    configFileName: 'tsconfig.json'
-  },
   tslint: {
-    configuration: require('../tslint.json')
-  }
+    configuration: require('../tslint.json'),
+  },
 };

@@ -1,7 +1,9 @@
 .tmp/
 coverage/
-dist/
+public/
 node_modules/
+npm-debug.log
 typings/
 .tags*
 .env
+logs/

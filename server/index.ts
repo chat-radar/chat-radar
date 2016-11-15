@@ -40,4 +40,6 @@ app.boot().then(() => {
   (<any>Bluebird.promisifyAll(web)).listenAsync(app.get('web port'));
 }).then(() => {
   logger.info('Server listening at %s', app.get('parse serverURL'));
+}).catch((err) => {
+  logger.error(err)
 });
