@@ -1,0 +1,3 @@
+interface TestState {};
+
+export = TestState;

@@ -6,6 +6,10 @@ class Application {
 
   protected container;
 
+  constructor() {
+    this.container = {};
+  }
+
   init(config): void {
     this.container = config;
   }
