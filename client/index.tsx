@@ -8,7 +8,7 @@ console.log('It works');
 
 // import {Main} from './app/main';
 
-import './index.scss';
+import './styles';
 
 // ReactDOM.render(
 //   <Router history={browserHistory}>

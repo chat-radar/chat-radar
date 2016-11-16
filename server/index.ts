@@ -1,14 +1,15 @@
 /// <reference path='../typings/index.d.ts' />
 
+import path = require('path');
 import Express = require('express');
-const { ParseServer } = require('parse-server');
 import Bluebird = require('bluebird');
 import logger = require('winston');
 import app = require('../lib/application');
-import config = require('../conf/server.conf');
 
 // Initialize application
-app.init(config);
+app.init(require('../conf/server.conf'));
+
+import middlewares = require('./middlewares');
 
 // Setup logger
 logger.remove(logger.transports.Console);
@@ -22,19 +23,13 @@ logger.add(logger.transports.Console, {
 // Setup web server
 const web = Express();
 
-// Setup Parse server
-const parse = new ParseServer({
-  databaseURI: app.get('parse databaseURI'),
-  appId: app.get('parse appId'),
-  masterKey: app.get('parse masterKey'),
-  serverURL: app.get('parse serverURL'),
-});
-
-web.use('/api', parse);
+web.use(middlewares.webpackDevMiddleware);
+web.use(middlewares.webpackHotMiddleware);
+web.use('/api', middlewares.parseServerMiddleware);
+web.use(Express.static(path.join(__dirname, '../public')));
 
 app.set('logger', logger);
 app.set('web', web);
-app.set('parse', parse);
 
 app.boot().then(() => {
   (<any>Bluebird.promisifyAll(web)).listenAsync(app.get('web port'));

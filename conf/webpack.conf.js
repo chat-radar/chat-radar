@@ -43,13 +43,14 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: conf.path.src('index.html'),
     }),
-    // new webpack.HotModuleReplacementPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
   ],
   postcss: () => [autoprefixer],
   debug: true,
   devtool: 'source-map',
   output: {
     path: path.join(process.cwd(), conf.paths.dist),
+    publicPath: '/',
     filename: 'chat-radar.js',
   },
   resolve: {
@@ -60,11 +61,12 @@ module.exports = {
       '.ts',
       '.tsx',
       '.js',
+      '.scss',
+      '.css',
     ],
   },
   entry: [
-    // 'webpack/hot/dev-server',
-    // 'webpack-hot-middleware/client',
+    'webpack-hot-middleware/client',
     `./${conf.path.src('index')}`,
   ],
   tslint: {
