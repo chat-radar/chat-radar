@@ -10,6 +10,7 @@ app.init(require('../conf/client.conf'));
 
 import Root = require('./components/root');
 
+import 'leaflet/dist/leaflet.css';
 import './styles';
 
 app.set('logger', logger);

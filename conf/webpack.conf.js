@@ -35,6 +35,12 @@ module.exports = {
           'ts-loader',
         ],
       },
+      {
+        test: /\.(png|jpe?g)$/,
+        loaders: [
+          'url-loader',
+        ],
+      },
     ],
   },
   plugins: [

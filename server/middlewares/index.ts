@@ -5,4 +5,4 @@ export = {
   parseServerMiddleware,
   webpackDevMiddleware,
   webpackHotMiddleware,
-}
+};
