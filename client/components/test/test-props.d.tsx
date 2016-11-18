@@ -1,3 +1,0 @@
-interface TestProps {};
-
-export = TestProps;

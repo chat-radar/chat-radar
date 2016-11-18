@@ -1,10 +1,8 @@
-/// <reference path='../typings/index.d.ts' />
-
 require('dotenv').config({ silent: true });
 
-export = {
+module.exports = {
 
-  'logger console level': process.env['LOG_LEVEL'] || 'verbose',
+  'logger console level': process.env['LOG_LEVEL'] || (process.env['NODE_ENV'] === 'production' ? 'info' : 'debug'),
 
   'web port': process.env['WEB_PORT'] ? parseInt(process.env['WEB_PORT']) : 1337,
 

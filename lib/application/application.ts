@@ -1,7 +1,5 @@
 /// <reference path='../../typings/index.d.ts' />
 
-import { extend } from 'lodash';
-
 class Application {
 
   protected container;
@@ -10,7 +8,7 @@ class Application {
     this.container = {};
   }
 
-  init(config): void {
+  init(config: any): void {
     this.container = config;
   }
 
@@ -29,4 +27,4 @@ class Application {
 
 }
 
-export = Application
+export = Application;

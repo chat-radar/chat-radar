@@ -6,6 +6,7 @@ const parseServerMiddleware = new ParseServer({
   appId: app.get('parse appId'),
   masterKey: app.get('parse masterKey'),
   serverURL: app.get('parse serverURL'),
+  loggerAdapter: app.get('logger'),
 });
 
 export = parseServerMiddleware;

@@ -3,32 +3,36 @@
 import path = require('path');
 import Express = require('express');
 import Bluebird = require('bluebird');
-import logger = require('winston');
+import winston = require('winston');
 import app = require('../lib/application');
 
-// Initialize application
+// initialize application
 app.init(require('../conf/server.conf'));
 
-import middlewares = require('./middlewares');
-
-// Setup logger
-logger.remove(logger.transports.Console);
-logger.add(logger.transports.Console, {
-  handleExceptions: true,
-  humanReadableUnhandledException: true,
-  level: app.get('logger console level'),
-  colorize: true,
+// setup logger
+const logger = new winston.Logger({
+  transports: [
+    new winston.transports.Console({
+      handleExceptions: true,
+      humanReadableUnhandledException: true,
+      level: app.get('logger console level'),
+      colorize: true,
+    }),
+  ],
 });
 
-// Setup web server
+app.set('logger', logger);
+
+// setup web server
+import middlewares = require('./middlewares');
+
 const web = Express();
 
 web.use(middlewares.webpackDevMiddleware);
 web.use(middlewares.webpackHotMiddleware);
 web.use('/api', middlewares.parseServerMiddleware);
-web.use(Express.static(path.join(__dirname, '../public')));
+web.use(Express.static(path.join(__dirname, '..', 'public')));
 
-app.set('logger', logger);
 app.set('web', web);
 
 app.boot().then(() => {
@@ -36,5 +40,5 @@ app.boot().then(() => {
 }).then(() => {
   logger.info('Server listening at %s', app.get('parse serverURL'));
 }).catch((err) => {
-  logger.error(err)
+  logger.error(err);
 });

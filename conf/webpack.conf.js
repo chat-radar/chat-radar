@@ -9,7 +9,7 @@ module.exports = {
   module: {
     preLoaders: [
       {
-        test: /\.tsx$/,
+        test: /\.tsx?$/,
         loader: 'tslint',
       },
     ],
