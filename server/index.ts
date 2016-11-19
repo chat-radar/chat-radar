@@ -32,6 +32,7 @@ web.use(middlewares.webpackDevMiddleware);
 web.use(middlewares.webpackHotMiddleware);
 web.use('/api', middlewares.parseServerMiddleware);
 web.use(Express.static(path.join(__dirname, '..', 'public')));
+web.get('*', (req: Express.Request, res: Express.Response) => res.sendFile(path.join(__dirname, '..', 'public', 'build', 'index.html')));
 
 app.set('web', web);
 

@@ -38,7 +38,7 @@ module.exports = {
       {
         test: /\.(png|jpe?g)$/,
         loaders: [
-          'url-loader',
+          'file-loader',
         ],
       },
     ],
@@ -56,7 +56,7 @@ module.exports = {
   devtool: 'source-map',
   output: {
     path: path.join(process.cwd(), conf.paths.dist),
-    publicPath: '/',
+    publicPath: '/build/',
     filename: 'chat-radar.js',
   },
   resolve: {
