@@ -7,6 +7,7 @@
     "express": "^4.14.0",
     "leaflet": "^1.0.1",
     "lodash": "^4.17.2",
+    "parse-dashboard": "^1.0.19",
     "parse-server": "^2.2.25-beta.1",
     "react": "^15.4.0",
     "react-dom": "^15.4.0",
