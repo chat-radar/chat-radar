@@ -1,6 +1,6 @@
 /// <reference path='../../../typings/index.d.ts' />
 
-import React = require('react');
+import * as React from 'react';
 import RootProps = require('./root-props.d');
 import RootState = require('./root-state.d');
 const { Map, Marker, Popup, TileLayer } = require('react-leaflet');
