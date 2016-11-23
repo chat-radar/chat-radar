@@ -2,18 +2,20 @@
   "globalDependencies": {
     "axios": "github:DefinitelyTyped/DefinitelyTyped/axios/axios.d.ts#bcd5761826eb567876c197ccc6a87c4d05731054",
     "classnames": "registry:dt/classnames#0.0.0+20160316155526",
+    "jquery": "registry:dt/jquery#1.10.0+20160929162922",
     "node": "registry:env/node#6.0.0+20161105011511",
+    "parse": "registry:dt/parse#1.2.19+20160906141533",
     "react": "github:DefinitelyTyped/DefinitelyTyped/react/react.d.ts#dc9dabe74a5be62613b17a3605309783a12ff28a",
-    "react-addons-test-utils": "github:DefinitelyTyped/DefinitelyTyped/react/react-addons-test-utils.d.ts#dc9dabe74a5be62613b17a3605309783a12ff28a",
     "react-dom": "github:DefinitelyTyped/DefinitelyTyped/react/react-dom.d.ts#dc9dabe74a5be62613b17a3605309783a12ff28a",
+    "redux-actions": "registry:dt/redux-actions#0.8.0+20161006171701",
+    "underscore": "registry:dt/underscore#1.8.3+20161016154529",
     "winston": "registry:dt/winston#0.0.0+20161108133445"
   },
   "dependencies": {
     "bluebird": "registry:npm/bluebird#3.4.1+20160909132857",
     "express": "registry:npm/express#4.14.0+20160925001530",
     "lodash": "registry:npm/lodash#4.0.0+20161015015725",
-    "react-redux": "registry:npm/react-redux#4.4.0+20160207114942",
-    "react-router": "registry:npm/react-router#2.4.0+20160628165748",
+    "react-redux": "registry:npm/react-redux#4.4.0+20160614222153",
     "webpack": "registry:npm/webpack#1.12.9+20160418172948"
   }
 }
