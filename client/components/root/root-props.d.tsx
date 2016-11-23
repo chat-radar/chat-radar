@@ -1,3 +1,0 @@
-interface RootProps {};
-
-export = RootProps;
