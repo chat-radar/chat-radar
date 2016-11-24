@@ -12,6 +12,7 @@
     "@types/winston": "0.0.32",
     "axios": "^0.15.2",
     "bluebird": "^3.4.6",
+    "bootstrap": "^4.0.0-alpha.5",
     "dotenv": "^2.0.0",
     "express": "^4.14.0",
     "leaflet": "^1.0.2",

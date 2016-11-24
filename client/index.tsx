@@ -7,6 +7,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as Parse from 'parse';
 import { MapContainer } from './containers/map-container';
+import { SidePanelContainer } from './containers/side-panel-container';
 import { CityStore, ChatStore } from './stores';
 
 // import styles
@@ -27,4 +28,12 @@ const chatStore = new ChatStore();
 const stores = { cityStore, chatStore };
 app.set('stores', stores);
 
-ReactDOM.render(<MapContainer stores={stores} />, document.getElementById('root'));
+ReactDOM.render(
+  (
+    <div>
+      <MapContainer stores={stores} />
+      <SidePanelContainer stores={stores} />
+    </div>
+  ),
+  document.getElementById('root'),
+);

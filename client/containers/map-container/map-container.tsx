@@ -4,6 +4,7 @@ import { observer } from 'mobx-react';
 import * as Parse from 'parse';
 import * as L from 'leaflet';
 const { Map, Marker, TileLayer } = require('react-leaflet');
+import './map-container.scss';
 
 @observer
 class MapContainer extends React.Component<IMapContainerProps, {}> {
@@ -43,7 +44,7 @@ class MapContainer extends React.Component<IMapContainerProps, {}> {
 
   render() {
     return (
-      <Map className='map' center={MapContainer.center} zoom={MapContainer.zoom} zoomControl={false}>
+      <Map className='map-container' center={MapContainer.center} zoom={MapContainer.zoom} zoomControl={false}>
         {this.renderTiles()}
         {this.renderPoints()}
       </Map>
