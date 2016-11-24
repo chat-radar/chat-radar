@@ -6,7 +6,8 @@ app.init(require('../conf/client.conf'));
 
 // imports
 import * as React from 'react';
-import ReactDOM = require('react-dom');
+import * as ReactDOM from 'react-dom';
+import * as Parse from 'parse';
 import { MapContainer } from './containers/map-container';
 import { PersonStore, CityStore } from './stores';
 
@@ -17,6 +18,10 @@ import './styles';
 // initialize logger
 const logger = console;
 app.set('logger', logger);
+
+// initialize API
+Parse.initialize(app.get('parse appId'));
+(Parse as any).serverURL = app.get('parse serverURL');
 
 // initialize stores
 const personStore = new PersonStore();

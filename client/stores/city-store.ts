@@ -1,18 +1,16 @@
 import { observable } from 'mobx';
+import * as Parse from 'parse';
+import { City } from '../api';
 
 class CityStore {
 
-  @observable cities = [];
+  @observable cities: City[] = [];
 
   constructor() {
-    this.cities.push({
-      name: 'Благовещенск',
-      geo: [50.257778, 127.536389],
+    const query = new Parse.Query(City);
+    query.find().then((cities: City[]) => {
+      this.cities = cities;
     });
-  }
-
-  map(predicate) {
-    return this.cities.map(predicate);
   }
 
 }

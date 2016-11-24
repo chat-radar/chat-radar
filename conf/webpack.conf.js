@@ -1,3 +1,5 @@
+require('dotenv').config({ silent: true });
+
 const webpack = require('webpack');
 const conf = require('./gulp.conf');
 const path = require('path');
@@ -48,6 +50,9 @@ module.exports = {
     new webpack.NoErrorsPlugin(),
     new HtmlWebpackPlugin({
       template: conf.path.src('index.html'),
+    }),
+    new webpack.DefinePlugin({
+      'process.env.PARSE_SERVER_URL': JSON.stringify(process.env['PARSE_SERVER_URL']),
     }),
     new webpack.HotModuleReplacementPlugin(),
   ],
