@@ -1,9 +1,8 @@
-/// <reference path='../../../typings/index.d.ts' />
-
 import * as React from 'react';
 import IMapContainerProps from './i-map-container-props';
 import { observer } from 'mobx-react';
-import { GeoPoint } from 'parse';
+import * as Parse from 'parse';
+import * as L from 'leaflet';
 const { Map, Marker, TileLayer } = require('react-leaflet');
 
 @observer
@@ -14,13 +13,23 @@ class MapContainer extends React.Component<IMapContainerProps, {}> {
   static center = [55.755833, 37.617778];
 
   renderPoints() {
-    const { cityStore } = this.props.stores;
+    const { cityStore, chatStore } = this.props.stores;
 
-    return cityStore.cities.map((city, i) => {
-      return (
-        <Marker key={i} position={[(city.get('geo') as GeoPoint).latitude, (city.get('geo') as GeoPoint).longitude]} />
-      );
+    if (chatStore.chat === null)
+      return null;
+
+    const icon = L.icon({
+      iconUrl: (chatStore.chat.get('marker') as Parse.File).url(),
     });
+
+    return cityStore.cities
+      .map(city => ({
+        key: city.id,
+        name: city.get('name'),
+        position: [ (city.get('geo') as Parse.GeoPoint).latitude, (city.get('geo') as Parse.GeoPoint).longitude ],
+        icon: icon,
+      }))
+      .map(attribs => <Marker {...attribs} />);
   }
 
   renderTiles() {
@@ -34,7 +43,7 @@ class MapContainer extends React.Component<IMapContainerProps, {}> {
 
   render() {
     return (
-      <Map className='map' center={MapContainer.center} zoom={MapContainer.zoom}>
+      <Map className='map' center={MapContainer.center} zoom={MapContainer.zoom} zoomControl={false}>
         {this.renderTiles()}
         {this.renderPoints()}
       </Map>

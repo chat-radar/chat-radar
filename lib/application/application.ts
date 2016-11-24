@@ -1,5 +1,3 @@
-/// <reference path='../../typings/index.d.ts' />
-
 class Application {
 
   protected container;

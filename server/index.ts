@@ -1,5 +1,3 @@
-/// <reference path='../typings/index.d.ts' />
-
 import path = require('path');
 import Express = require('express');
 import Bluebird = require('bluebird');
@@ -33,7 +31,7 @@ web.use('/dashboard', middlewares.parseDashboardMiddleware);
 web.use(middlewares.webpackDevMiddleware);
 web.use(middlewares.webpackHotMiddleware);
 web.use(Express.static(path.join(__dirname, '..', 'public')));
-web.get('*', (req: Express.Request, res: Express.Response) => res.sendFile(path.join(__dirname, '..', 'public', 'build', 'index.html')));
+web.get('*', (_req: Express.Request, res: Express.Response) => res.sendFile(path.join(__dirname, '..', 'public', 'build', 'index.html')));
 
 app.set('web', web);
 

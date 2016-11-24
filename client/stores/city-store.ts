@@ -7,8 +7,7 @@ class CityStore {
   @observable cities: City[] = [];
 
   constructor() {
-    const query = new Parse.Query(City);
-    query.find().then((cities: City[]) => {
+    (new Parse.Query(City)).find().then((cities: City[]) => {
       this.cities = cities;
     });
   }

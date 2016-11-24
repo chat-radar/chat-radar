@@ -1,9 +1,10 @@
-import { PersonStore, CityStore } from '../../stores';
+import { CityStore, ChatStore } from '../../stores';
 
 interface IMapContainerProps {
   stores: {
-    personStore: PersonStore;
+    // personStore: PersonStore;
     cityStore: CityStore;
+    chatStore: ChatStore;
   };
 };
 
