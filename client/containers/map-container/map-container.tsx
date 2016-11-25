@@ -3,6 +3,7 @@ import IMapContainerProps from './i-map-container-props';
 import { observer } from 'mobx-react';
 import * as Parse from 'parse';
 import * as L from 'leaflet';
+import { City } from '../../api';
 const { Map, Marker, TileLayer } = require('react-leaflet');
 import 'leaflet/dist/leaflet.css';
 import './map-container.scss';
@@ -13,6 +14,11 @@ class MapContainer extends React.Component<IMapContainerProps, {}> {
   static zoom = 3;
 
   static center = [55.755833, 37.617778];
+
+  handleCityClick(city: City) {
+    const { personStore } = this.props.stores;
+    personStore.selectCity(city);
+  }
 
   renderPoints() {
     const { cityStore, chatStore } = this.props.stores;
@@ -30,6 +36,7 @@ class MapContainer extends React.Component<IMapContainerProps, {}> {
         name: city.get('name'),
         position: [ (city.get('geo') as Parse.GeoPoint).latitude, (city.get('geo') as Parse.GeoPoint).longitude ],
         icon: icon,
+        onClick: this.handleCityClick.bind(this, city)
       }))
       .map(attribs => <Marker {...attribs} />);
   }

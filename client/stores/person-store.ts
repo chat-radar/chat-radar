@@ -7,6 +7,8 @@ class PersonStore {
   @observable people: Person[] = [];
 
   selectCity(city: City): void {
+    this.people = [];
+
     (new Parse.Query(Person))
       .equalTo('city', city)
       .find()
