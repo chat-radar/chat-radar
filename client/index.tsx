@@ -8,7 +8,7 @@ import * as ReactDOM from 'react-dom';
 import * as Parse from 'parse';
 import { MapContainer } from './containers/map-container';
 import { SidePanelContainer } from './containers/side-panel-container';
-import { CityStore, ChatStore } from './stores';
+import { CityStore, ChatStore, PersonStore } from './stores';
 
 // import styles
 import '!style!css!../webpack-loaders/class-prefix-loader!postcss!sass!bootstrap/scss/bootstrap.scss';
@@ -23,10 +23,10 @@ Parse.initialize(app.get('parse appId'));
 (Parse as any).serverURL = app.get('parse serverURL');
 
 // initialize stores
-// const personStore = new PersonStore();
 const cityStore = new CityStore();
 const chatStore = new ChatStore();
-const stores = { cityStore, chatStore };
+const personStore = new PersonStore();
+const stores = { cityStore, chatStore, personStore };
 app.set('stores', stores);
 
 ReactDOM.render(

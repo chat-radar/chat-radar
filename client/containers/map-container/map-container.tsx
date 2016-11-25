@@ -17,11 +17,11 @@ class MapContainer extends React.Component<IMapContainerProps, {}> {
   renderPoints() {
     const { cityStore, chatStore } = this.props.stores;
 
-    if (chatStore.chat === null)
+    if (chatStore.currentChat === null)
       return null;
 
     const icon = L.icon({
-      iconUrl: (chatStore.chat.get('marker') as Parse.File).url(),
+      iconUrl: (chatStore.currentChat.get('marker') as Parse.File).url(),
     });
 
     return cityStore.cities

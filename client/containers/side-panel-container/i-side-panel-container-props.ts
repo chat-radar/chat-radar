@@ -1,8 +1,8 @@
-import { CityStore, ChatStore } from '../../stores';
+import { CityStore, ChatStore, PersonStore } from '../../stores';
 
 interface ISidePanelContainerProps {
   stores: {
-    // personStore: PersonStore;
+    personStore: PersonStore;
     cityStore: CityStore;
     chatStore: ChatStore;
   };

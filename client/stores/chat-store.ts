@@ -6,7 +6,7 @@ class ChatStore {
 
   @observable chats: Chat[] = [];
 
-  @computed get chat(): Chat {
+  @computed get currentChat(): Chat {
     if (this.chats.length === 0)
       return null;
     return this.chats[0];

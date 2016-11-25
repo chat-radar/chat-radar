@@ -2,17 +2,33 @@ import * as React from 'react';
 import ISidePanelContainerProps from './i-side-panel-container-props';
 import { observer } from 'mobx-react';
 // import * as Parse from 'parse';
+import { City } from '../../api';
 import './side-panel-container.scss';
 
 @observer
 class SidePanelContainer extends React.Component<ISidePanelContainerProps, {}> {
 
+  handleCityClick(city: City) {
+    const { personStore } = this.props.stores;
+    personStore.selectCity(city);
+  }
+
   renderList() {
-    return (
-      <div>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      </div>
-    );
+    const { cityStore, personStore } = this.props.stores;
+
+    if (personStore.people.length > 0) {
+      return (
+        <ul className='bs-list-group'>
+          {personStore.people.map(person => <li key={person.id} className='bs-list-group-item'>{person.get('nickname')}</li>)}
+        </ul>
+      );
+    } else {
+      return (
+        <div className='bs-list-group'>
+          {cityStore.cities.map(city => <button onClick={this.handleCityClick.bind(this, city)} key={city.id} type='button' className='bs-list-group-item bs-list-group-item-action'>{city.get('name')}</button>)}
+        </div>
+      );
+    }
   }
 
   renderFooter() {

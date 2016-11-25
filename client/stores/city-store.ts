@@ -6,6 +6,8 @@ class CityStore {
 
   @observable cities: City[] = [];
 
+  @observable currentChat: City = null;
+
   constructor() {
     (new Parse.Query(City)).find().then((cities: City[]) => {
       this.cities = cities;
