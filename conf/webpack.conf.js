@@ -27,20 +27,20 @@ module.exports = {
         loaders: [
           'style',
           'css',
-          'sass',
           'postcss',
+          'sass',
         ],
       },
       {
         test: /\.tsx?$/,
         loaders: [
-          'ts-loader',
+          'ts',
         ],
       },
       {
         test: /\.(png|jpe?g)$/,
         loaders: [
-          'file-loader',
+          'file',
         ],
       },
     ],

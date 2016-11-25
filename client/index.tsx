@@ -11,6 +11,7 @@ import { SidePanelContainer } from './containers/side-panel-container';
 import { CityStore, ChatStore } from './stores';
 
 // import styles
+import '!style!css!../webpack-loaders/class-prefix-loader!postcss!sass!bootstrap/scss/bootstrap.scss';
 import './styles';
 
 // initialize logger

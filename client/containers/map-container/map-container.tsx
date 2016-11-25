@@ -4,6 +4,7 @@ import { observer } from 'mobx-react';
 import * as Parse from 'parse';
 import * as L from 'leaflet';
 const { Map, Marker, TileLayer } = require('react-leaflet');
+import 'leaflet/dist/leaflet.css';
 import './map-container.scss';
 
 @observer
