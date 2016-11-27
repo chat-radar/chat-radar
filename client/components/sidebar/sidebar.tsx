@@ -6,6 +6,9 @@ class Sidebar extends React.Component<{}, {}> {
   render() {
     return (
       <div className='sidebar'>
+        <div className='sidebar-header'>
+          Chat Radar
+        </div>
         <div className='sidebar-content'>
           {this.props.children}
         </div>

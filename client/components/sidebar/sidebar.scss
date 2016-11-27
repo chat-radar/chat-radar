@@ -16,24 +16,34 @@
     padding: 1.2rem;
   }
 
+  &-header,
   &-footer {
-    padding: 1.2rem;
-    text-align: right;
-    font-size: .8em;
-    line-height: 1rem;
+    padding: 1.8rem 1.2rem;
+    text-align: center;
+    font-weight: 300;
+    font-size: 1.6em;
+    line-height: 1em;
     position: relative;
-    color: white;
 
     &::before {
       content: '';
       display: block;
       height: 0;
       position: absolute;
-      top: -1px;
       right: 1.2rem;
+      bottom: -1px;
       left: 1.2rem;
       border-top: 1px solid rgba(black, .1);
       border-bottom: 1px solid rgba(white, .1);
+    }
+  }
+
+  &-footer {
+    font-size: .8em;
+
+    &::before {
+      top: -1px;
+      bottom: auto;
     }
   }
 }
