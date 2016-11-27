@@ -6,9 +6,10 @@ app.init(require('../conf/client.conf'));
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as Parse from 'parse';
-import { MapContainer } from './containers/map-container';
-import { SidePanelContainer } from './containers/side-panel-container';
+import UIRouterReact from 'ui-router-react';
 import { CityStore, ChatStore, PersonStore } from './stores';
+import { Root } from './components/root';
+import { MapContainer } from './containers/map-container';
 
 // import styles
 import '!style!css!../webpack-loaders/class-prefix-loader!postcss!sass!bootstrap/scss/bootstrap.scss';
@@ -29,12 +30,19 @@ const personStore = new PersonStore();
 const stores = { cityStore, chatStore, personStore };
 app.set('stores', stores);
 
-ReactDOM.render(
-  (
-    <div>
-      <MapContainer stores={stores} />
-      <SidePanelContainer stores={stores} />
-    </div>
-  ),
-  document.getElementById('root'),
-);
+// setup routes
+const router = new UIRouterReact();
+
+router.stateRegistry.register({
+  name: 'index',
+  url: '/',
+  views: {
+    background: MapContainer,
+  },
+});
+
+router.html5Mode(true);
+
+router.start();
+
+ReactDOM.render(<Root {...stores} />, document.getElementById('root'));
