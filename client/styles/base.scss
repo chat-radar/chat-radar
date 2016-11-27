@@ -1,0 +1,8 @@
+a {
+  color: $brand-primary;
+
+  &:hover,
+  &:focus {
+    color: lighten($brand-primary, 10%);
+  }
+}
