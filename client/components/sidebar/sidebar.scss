@@ -1,12 +1,16 @@
-.side-panel-container {
-  position: fixed;
-  z-index: 1;
+.sidebar {
+  position: absolute;
+  z-index: 2;
   background-color: rgba(#25282A, .95);
-  width: 25rem;
-  top: 3rem;
-  left: 3rem;
-  box-shadow: 0 0 1rem rgba(black, .5);
-  border-radius: .2rem;
+  color: white;
+  min-width: 25rem;
+  width: 25%;
+  top: 1rem;
+  bottom: 1rem;
+  left: 1rem;
+  overflow: auto;
+  // box-shadow: 0 0 1rem rgba(black, .5);
+  // border-radius: .2rem;
 
   &-content {
     padding: 1.2rem;

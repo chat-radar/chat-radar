@@ -17,7 +17,7 @@ class BackgroundMap extends React.Component<IBackgroundMapProps, {}> {
 
   static tilesAttribution = '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="https://carto.com/attributions">CARTO</a>';
 
-  protected onCityClick(city: City) {
+  protected handleCityClick(city: City) {
     this.props.onCityClick(city);
   }
 
@@ -31,7 +31,7 @@ class BackgroundMap extends React.Component<IBackgroundMapProps, {}> {
           lon: parseInt(city.get('geo').longitude, 10),
         },
         icon: L.icon({ iconUrl: this.props.markerFile.url() }),
-        onClick: this.onCityClick.bind(this, city),
+        onClick: this.handleCityClick.bind(this, city),
       }))
       .map(attribs => <Marker {...attribs} />);
   }

@@ -10,6 +10,7 @@ import UIRouterReact from 'ui-router-react';
 import { CityStore, ChatStore, PersonStore } from './stores';
 import { Root } from './components/root';
 import { MapContainer } from './containers/map-container';
+import { CitiesListContainer } from './containers/cities-list-container';
 
 // import styles
 import '!style!css!../webpack-loaders/class-prefix-loader!postcss!sass!bootstrap/scss/bootstrap.scss';
@@ -38,6 +39,7 @@ router.stateRegistry.register({
   url: '/',
   views: {
     background: MapContainer,
+    content: CitiesListContainer,
   },
 });
 
