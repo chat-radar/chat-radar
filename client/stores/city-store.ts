@@ -1,15 +1,20 @@
 import { observable } from 'mobx';
 import * as Parse from 'parse';
-import { City } from '../api';
+import { City, Person } from '../api';
 
 class CityStore {
 
   @observable cities: City[] = [];
 
-  @observable currentChat: City = null;
-
   constructor() {
-    (new Parse.Query(City)).find().then((cities: City[]) => {
+    (new Parse.Query(Person)).find().then((people: Person[]) => {
+      return people.map(person => person.get('city'));
+    }).then((cities: City[]) => {
+      return (new Parse.Query(City))
+        .ascending('name')
+        .containedIn('objectId', cities.map(city => city.id))
+        .find();
+    }).then((cities: City[]) => {
       this.cities = cities;
     });
   }
