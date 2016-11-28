@@ -11,6 +11,7 @@ import { CityStore, ChatStore, PersonStore } from './stores';
 import { Root } from './components/root';
 import { MapContainer } from './containers/map-container';
 import { CitiesListContainer } from './containers/cities-list-container';
+import { CityInfoContainer } from './containers/city-info-container';
 
 // import styles
 import '!style!css!../webpack-loaders/class-prefix-loader!postcss!sass!bootstrap/scss/bootstrap.scss';
@@ -35,15 +36,35 @@ app.set('stores', stores);
 const router = new UIRouterReact();
 
 router.stateRegistry.register({
-  name: 'index',
-  url: '/',
+  name: 'root',
+  abstract: true,
   views: {
     background: MapContainer,
-    content: CitiesListContainer,
   },
 });
 
-router.html5Mode(true);
+router.stateRegistry.register({
+  name: 'root.cities',
+  url: '/',
+  views: {
+    '@': CitiesListContainer,
+  },
+});
+
+router.stateRegistry.register({
+  name: 'root.city',
+  url: '/:cityId',
+  views: {
+    '@': CityInfoContainer,
+  },
+  resolve: [{
+    token: 'city',
+    deps: ['$transition$'],
+    resolveFn: (trans) => {
+      cityStore.selectCityById(trans.params().cityId);
+    },
+  }],
+});
 
 router.start();
 

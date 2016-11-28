@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { UISref } from 'ui-router-react';
 import './sidebar.scss';
 
 class Sidebar extends React.Component<{}, {}> {
@@ -7,7 +8,7 @@ class Sidebar extends React.Component<{}, {}> {
     return (
       <div className='sidebar'>
         <div className='sidebar-header'>
-          Chat Radar
+          <UISref to='root.cities'><a>Chat Radar</a></UISref>
         </div>
         <div className='sidebar-content'>
           {this.props.children}

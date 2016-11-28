@@ -23,7 +23,7 @@ class Root extends React.Component<IRootProps, {}> {
     return (
       <div className='root'>
         <UIView name='background' />
-        <UIView name='content' />
+        <UIView />
       </div>
     );
   }
