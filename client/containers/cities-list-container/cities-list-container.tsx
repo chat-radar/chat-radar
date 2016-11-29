@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { IStoresContext } from '../../components/root';
 import { observer } from 'mobx-react';
-import { Sidebar } from '../../components/sidebar';
+import { Sidebar, SidebarHeader, SidebarContent, SidebarFooter } from '../../components/sidebar';
 // import * as Parse from 'parse';
 import { City } from '../../api';
 import { UISref } from 'ui-router-react';
@@ -55,7 +55,9 @@ class CitiesListContainer extends React.Component<{}, {}> {
 
     return (
       <Sidebar>
-        {content}
+        <SidebarHeader />
+        <SidebarContent>{content}</SidebarContent>
+        <SidebarFooter />
       </Sidebar>
     );
   }

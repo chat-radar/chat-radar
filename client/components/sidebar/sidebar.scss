@@ -20,9 +20,9 @@
   &-footer {
     padding: 1.8rem 1.2rem;
     text-align: center;
-    font-weight: 300;
-    font-size: 1.6em;
-    line-height: 1em;
+    // font-weight: 300;
+    // font-size: 1.6em;
+    // line-height: 1em;
     position: relative;
 
     &::before {
@@ -35,6 +35,15 @@
       left: 1.2rem;
       border-top: 1px solid rgba(black, .1);
       border-bottom: 1px solid rgba(white, .1);
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    p {
+      margin: 0;
     }
   }
 
