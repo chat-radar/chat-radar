@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { IStoresContext } from '../../components/root';
 import { observer } from 'mobx-react';
-import { Sidebar } from '../../components/sidebar';
+import { Sidebar, SidebarHeader, SidebarContent, SidebarFooter } from '../../components/sidebar';
 // import * as Parse from 'parse';
 import { Person } from '../../api';
+import { ListGroup, ListGroupItem } from '../../components/list-group';
+import { Spinner } from '../../components/spinner';
 
 @observer
 class CityInfoContainer extends React.Component<{}, {}> {
@@ -16,24 +18,47 @@ class CityInfoContainer extends React.Component<{}, {}> {
 
   context: IStoresContext;
 
-  renderItems() {
-    return this.context.cityStore.currentCityPeople
-      .map((person: Person) => {
-        return (
-          <button key={person.id} type='button' className='bs-list-group-item'>{person.get('nickname')}</button>
-        );
-      });
+  renderList() {
+    const items = this.context.cityStore.currentCityPeople.map((person: Person) => {
+      return (
+        <ListGroupItem key={person.id}>{person.get('nickname')}</ListGroupItem>
+      );
+    });
+
+    return (
+      <ListGroup>
+        {items}
+      </ListGroup>
+    );
+  }
+
+  renderNoPeople() {
+    return (<div>Никого онлайн</div>);
+  }
+
+  renderSpinner() {
+    return (<Spinner />);
   }
 
   render() {
-    if (this.context.cityStore.currentCityPeople.length < 1)
-      return null;
+    let header = null;
+    let content = null;
+
+    if (!this.context.cityStore.isFetching)
+      header = (<h1>{this.context.cityStore.currentCity.get('name')}</h1>);
+
+    if (this.context.cityStore.isFetching)
+      content = this.renderSpinner();
+    else if (this.context.cityStore.currentCityPeople.length < 1)
+      content = this.renderNoPeople();
+    else
+      content = this.renderList();
 
     return (
       <Sidebar>
-        <div className='bs-list-group'>
-          {this.renderItems()}
-        </div>
+        {header ? (<SidebarHeader>{header}</SidebarHeader>) : null}
+        <SidebarContent>{content}</SidebarContent>
+        <SidebarFooter />
       </Sidebar>
     );
   }

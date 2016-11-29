@@ -31,19 +31,17 @@ class CityStore {
     this.currentCity = null;
     this.currentCityPeople = [];
 
-    const currentCity = this.cities.find((city: City) => city.id === id);
-    if (!currentCity) return;
-
-    this.currentCity = currentCity;
-
     this.isFetching = true;
-    (new Parse.Query(Person))
-      .equalTo('city', currentCity)
-      .find()
-      .then((people: Person[]) => {
-        this.currentCityPeople = people;
-        this.isFetching = false;
-      });
+    (new Parse.Query(City)).equalTo('objectId', id).find().then((cities: City[]) => {
+      if (cities.length < 1)
+        throw new Error('City not found');
+      return this.currentCity = cities[0];
+    }).then((currentCity: City) => {
+      return (new Parse.Query(Person)).equalTo('city', currentCity).find();
+    }).then((people: Person[]) => {
+      this.currentCityPeople = people;
+      this.isFetching = false;
+    });
   }
 
 }

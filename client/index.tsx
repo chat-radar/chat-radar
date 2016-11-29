@@ -66,6 +66,7 @@ router.stateRegistry.register({
   }],
 });
 
+// router.html5Mode(true);
 router.start();
 
 ReactDOM.render(<Root {...stores} />, document.getElementById('root'));

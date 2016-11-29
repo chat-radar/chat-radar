@@ -3,6 +3,13 @@
   &-item {
     background-color: transparent;
     color: white;
-    border-color: white;
+    border-color: rgba(white, .9);
+    border-width: 1px 0;
+
+    &,
+    &:first-child,
+    &:last-child {
+      border-radius: 0;
+    }
   }
 }
