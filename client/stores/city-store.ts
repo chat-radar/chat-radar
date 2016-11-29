@@ -1,7 +1,7 @@
 import { observable } from 'mobx';
 import * as Parse from 'parse';
 import { City, Person } from '../api';
-import { find } from 'lodash';
+const { find } = require('lodash');
 
 class CityStore {
 

@@ -14,8 +14,6 @@
     "noUnusedLocals": true
   },
   "exclude": [
-    "typings",
-    "node_modules",
-    "app.backup"
+    "node_modules"
   ]
 }
