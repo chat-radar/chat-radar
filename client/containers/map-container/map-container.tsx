@@ -4,6 +4,9 @@ import { observer } from 'mobx-react';
 import { BackgroundMap } from '../../components/background-map';
 // import * as Parse from 'parse';
 import { City } from '../../api';
+import * as app from '../../../lib/application';
+import UIRouterReact from 'ui-router-react';
+const router: UIRouterReact = app.get('router');
 
 @observer
 class MapContainer extends React.Component<{}, {}> {
@@ -17,8 +20,7 @@ class MapContainer extends React.Component<{}, {}> {
   context: IStoresContext;
 
   handleCityClick(city: City) {
-    console.log(city);
-    // this.context.personStore.selectCity(city);
+    router.stateService.go('root.city', { cityId: city.id });
   }
 
   render() {

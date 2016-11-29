@@ -44,7 +44,7 @@ class CityInfoContainer extends React.Component<{}, {}> {
     let header = null;
     let content = null;
 
-    if (!this.context.cityStore.isFetching)
+    if (!this.context.cityStore.isFetching && this.context.cityStore.currentCity)
       header = (<h1>{this.context.cityStore.currentCity.get('name')}</h1>);
 
     if (this.context.cityStore.isFetching)

@@ -7,11 +7,6 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as Parse from 'parse';
 import UIRouterReact from 'ui-router-react';
-import { CityStore, ChatStore, PersonStore } from './stores';
-import { Root } from './components/root';
-import { MapContainer } from './containers/map-container';
-import { CitiesListContainer } from './containers/cities-list-container';
-import { CityInfoContainer } from './containers/city-info-container';
 
 // import styles
 import '!style!css!../webpack-loaders/class-prefix-loader!postcss!sass!bootstrap/scss/bootstrap.scss';
@@ -26,6 +21,8 @@ Parse.initialize(app.get('parse appId'));
 (Parse as any).serverURL = app.get('parse serverURL');
 
 // initialize stores
+import { CityStore, ChatStore, PersonStore } from './stores';
+
 const cityStore = new CityStore();
 const chatStore = new ChatStore();
 const personStore = new PersonStore();
@@ -34,6 +31,12 @@ app.set('stores', stores);
 
 // setup routes
 const router = new UIRouterReact();
+app.set('router', router);
+
+import { Root } from './components/root';
+import { MapContainer } from './containers/map-container';
+import { CitiesListContainer } from './containers/cities-list-container';
+import { CityInfoContainer } from './containers/city-info-container';
 
 router.stateRegistry.register({
   name: 'root',
