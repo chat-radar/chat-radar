@@ -1,7 +1,6 @@
 import { observable } from 'mobx';
 import * as Parse from 'parse';
 import { City, Person } from '../api';
-const { find } = require('lodash');
 
 class CityStore {
 
@@ -28,7 +27,7 @@ class CityStore {
     this.currentCity = null;
     this.currentCityPeople = [];
 
-    const currentCity = find(this.cities, (city: City) => city.id === id);
+    const currentCity = this.cities.find((city: City) => city.id === id);
     if (!currentCity) return;
 
     this.currentCity = currentCity;
