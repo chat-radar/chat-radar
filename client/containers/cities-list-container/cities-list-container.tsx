@@ -5,6 +5,7 @@ import { Sidebar } from '../../components/sidebar';
 // import * as Parse from 'parse';
 import { City } from '../../api';
 import { UISref } from 'ui-router-react';
+import { ListGroup, ListGroupItem } from '../../components/list-group';
 
 @observer
 class CitiesListContainer extends React.Component<{}, {}> {
@@ -22,7 +23,7 @@ class CitiesListContainer extends React.Component<{}, {}> {
       .map((city: City) => {
         return (
           <UISref key={city.id} to='root.city' params={{cityId: city.id}}>
-            <a className='bs-list-group-item'>{city.get('name')}</a>
+            <ListGroupItem>{city.get('name')}</ListGroupItem>
           </UISref>
         );
       });
@@ -34,9 +35,9 @@ class CitiesListContainer extends React.Component<{}, {}> {
 
     return (
       <Sidebar>
-        <div className='bs-list-group'>
+        <ListGroup>
           {this.renderItems()}
-        </div>
+        </ListGroup>
       </Sidebar>
     );
   }
