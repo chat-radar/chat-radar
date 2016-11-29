@@ -10,7 +10,10 @@ class CityStore {
 
   @observable currentCityPeople: Person[] = [];
 
+  @observable isFetching: boolean = false;
+
   constructor() {
+    this.isFetching = true;
     (new Parse.Query(Person)).find().then((people: Person[]) => {
       return people.map(person => person.get('city'));
     }).then((cities: City[]) => {
@@ -20,6 +23,7 @@ class CityStore {
         .find();
     }).then((cities: City[]) => {
       this.cities = cities;
+      this.isFetching = false;
     });
   }
 
@@ -32,11 +36,13 @@ class CityStore {
 
     this.currentCity = currentCity;
 
+    this.isFetching = true;
     (new Parse.Query(Person))
       .equalTo('city', currentCity)
       .find()
       .then((people: Person[]) => {
         this.currentCityPeople = people;
+        this.isFetching = false;
       });
   }
 

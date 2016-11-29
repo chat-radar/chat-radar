@@ -20,7 +20,7 @@ class CityInfoContainer extends React.Component<{}, {}> {
     return this.context.cityStore.currentCityPeople
       .map((person: Person) => {
         return (
-          <button type='button' className='bs-list-group-item'>{person.get('nickname')}</button>
+          <button key={person.id} type='button' className='bs-list-group-item'>{person.get('nickname')}</button>
         );
       });
   }

@@ -6,6 +6,7 @@ import { Sidebar } from '../../components/sidebar';
 import { City } from '../../api';
 import { UISref } from 'ui-router-react';
 import { ListGroup, ListGroupItem } from '../../components/list-group';
+import { Spinner } from '../../components/spinner';
 
 @observer
 class CitiesListContainer extends React.Component<{}, {}> {
@@ -18,26 +19,43 @@ class CitiesListContainer extends React.Component<{}, {}> {
 
   context: IStoresContext;
 
-  renderItems() {
-    return this.context.cityStore.cities
-      .map((city: City) => {
-        return (
-          <UISref key={city.id} to='root.city' params={{cityId: city.id}}>
-            <ListGroupItem>{city.get('name')}</ListGroupItem>
-          </UISref>
-        );
-      });
+  renderList() {
+    const items = this.context.cityStore.cities.map((city: City) => {
+      return (
+        <UISref key={city.id} to='root.city' params={{cityId: city.id}}>
+          <ListGroupItem>{city.get('name')}</ListGroupItem>
+        </UISref>
+      );
+    });
+
+    return (
+      <ListGroup>
+        {items}
+      </ListGroup>
+    );
+  }
+
+  renderEmpty() {
+    return (<div>Городов пока нет</div>);
+  }
+
+  renderSpinner() {
+    return (<Spinner />);
   }
 
   render() {
-    if (this.context.cityStore.cities.length < 1)
-      return null;
+    let content = null;
+
+    if (this.context.cityStore.isFetching)
+      content = this.renderSpinner();
+    else if (this.context.cityStore.cities.length < 1)
+      content = this.renderEmpty();
+    else
+      content = this.renderList();
 
     return (
       <Sidebar>
-        <ListGroup>
-          {this.renderItems()}
-        </ListGroup>
+        {content}
       </Sidebar>
     );
   }
