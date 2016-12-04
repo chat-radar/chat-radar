@@ -19,6 +19,7 @@
     "bootstrap": "^4.0.0-alpha.5",
     "dotenv": "^2.0.0",
     "express": "^4.14.0",
+    "font-awesome": "^4.7.0",
     "leaflet": "^1.0.2",
     "mobx": "^2.6.3",
     "mobx-react": "^4.0.3",

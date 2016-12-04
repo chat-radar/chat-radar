@@ -24,6 +24,8 @@ h5 {
 // links
 a {
   color: $brand-primary;
+  cursor: pointer;
+  transition: all .2s;
 
   &:hover,
   &:focus {

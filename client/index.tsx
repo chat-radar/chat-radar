@@ -10,6 +10,7 @@ import UIRouterReact from 'ui-router-react';
 
 // import styles
 import '!style!css!../webpack-loaders/class-prefix-loader!postcss!sass!bootstrap/scss/bootstrap.scss';
+import 'font-awesome/scss/font-awesome.scss';
 import './styles';
 
 // initialize logger
