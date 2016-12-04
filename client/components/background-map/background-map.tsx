@@ -8,17 +8,30 @@ import './background-map.scss';
 
 class BackgroundMap extends React.Component<IBackgroundMapProps, {}> {
 
-  static zoom = 3;
-
-  static center = [55.755833, 37.617778];
-
   static tilesUrl = 'http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png';
   // static tilesUrl = 'http://tiles.maps.sputnik.ru/{z}/{x}/{y}.png';
 
   static tilesAttribution = '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="https://carto.com/attributions">CARTO</a>';
 
+  static zoom = 3;
+
+  center = {
+    lat: 55.755833,
+    lon: 37.617778,
+  };
+
   protected handleCityClick(city: City) {
     this.props.onCityClick(city);
+  }
+
+  protected getCenter() {
+    if (this.props.currentCity) {
+      this.center = {
+        lat: parseFloat(this.props.currentCity.get('geo').latitude),
+        lon: parseFloat(this.props.currentCity.get('geo').longitude),
+      };
+    }
+    return this.center;
   }
 
   renderPoints() {
@@ -27,8 +40,8 @@ class BackgroundMap extends React.Component<IBackgroundMapProps, {}> {
         key: city.id,
         name: city.get('name'),
         position: {
-          lat: parseInt(city.get('geo').latitude, 10),
-          lon: parseInt(city.get('geo').longitude, 10),
+          lat: parseFloat(city.get('geo').latitude),
+          lon: parseFloat(city.get('geo').longitude),
         },
         icon: L.icon({ iconUrl: this.props.markerFile.url() }),
         onClick: this.handleCityClick.bind(this, city),
@@ -38,7 +51,7 @@ class BackgroundMap extends React.Component<IBackgroundMapProps, {}> {
 
   render() {
     return (
-      <Map className='background-map' center={BackgroundMap.center} zoom={BackgroundMap.zoom} zoomControl={false}>
+      <Map className='background-map' center={this.getCenter()} zoom={BackgroundMap.zoom} zoomControl={false}>
         <TileLayer url={BackgroundMap.tilesUrl} attribution={BackgroundMap.tilesAttribution} />
         <ZoomControl position='topright' />
         {this.renderPoints()}

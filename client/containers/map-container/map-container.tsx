@@ -32,6 +32,7 @@ class MapContainer extends React.Component<{}, {}> {
     return (
       <BackgroundMap
         cities={this.context.cityStore.cities}
+        currentCity={this.context.cityStore.currentCity}
         markerFile={this.context.chatStore.currentChat.get('marker')}
         onCityClick={this.handleCityClick.bind(this)}
       />
