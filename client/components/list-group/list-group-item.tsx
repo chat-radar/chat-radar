@@ -8,11 +8,10 @@ class ListGroupItem extends React.Component<IListGroupItemProps, {}> {
     const { href } = this.props;
     const attribs = { href };
 
-    return (
-      <a {...attribs} className='list-group-item bs-list-group-item'>
-        {this.props.children}
-      </a>
-    );
+    if (!href)
+      return (<div {...attribs} className='list-group-item bs-list-group-item'>{this.props.children}</div>);
+
+    return (<a {...attribs} className='list-group-item bs-list-group-item'>{this.props.children}</a>);
   }
 
 }

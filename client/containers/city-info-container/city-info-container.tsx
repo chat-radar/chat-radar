@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { IStoresContext } from '../../components/root';
 import { observer } from 'mobx-react';
-import { Sidebar, SidebarHeader, SidebarContent, SidebarFooter } from '../../components/sidebar';
+import { Sidebar, SidebarContent, SidebarFooter } from '../../components/sidebar';
 // import * as Parse from 'parse';
 import { Person } from '../../api';
 import { ListGroup, ListGroupItem } from '../../components/list-group';
+import { CityInfo } from '../../components/city-info';
 import { Spinner } from '../../components/spinner';
 
 @observer
@@ -17,6 +18,15 @@ class CityInfoContainer extends React.Component<{}, {}> {
   };
 
   context: IStoresContext;
+
+  renderInfo() {
+    return (
+      <CityInfo
+        name={this.context.cityStore.currentCity.get('name')}
+        photoUrl={this.context.cityStore.currentCity.get('photoUrl')}
+      />
+    );
+  }
 
   renderList() {
     const items = this.context.cityStore.currentCityPeople.map((person: Person) => {
@@ -45,7 +55,7 @@ class CityInfoContainer extends React.Component<{}, {}> {
     let content = null;
 
     if (!this.context.cityStore.isFetching && this.context.cityStore.currentCity)
-      header = (<h1>{this.context.cityStore.currentCity.get('name')}</h1>);
+      header = this.renderInfo();
 
     if (this.context.cityStore.isFetching)
       content = this.renderSpinner();
@@ -56,7 +66,7 @@ class CityInfoContainer extends React.Component<{}, {}> {
 
     return (
       <Sidebar>
-        {header ? (<SidebarHeader>{header}</SidebarHeader>) : null}
+        {header ? header : null}
         <SidebarContent>{content}</SidebarContent>
         <SidebarFooter />
       </Sidebar>
