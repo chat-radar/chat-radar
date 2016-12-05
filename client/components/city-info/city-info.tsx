@@ -1,18 +1,10 @@
 import * as React from 'react';
 import ICityInfoProps from './i-city-info-props';
 import { UISref } from 'ui-router-react';
+import { splitAddress } from '../../../utils';
 import './city-info.scss';
 
 class CityInfo extends React.Component<ICityInfoProps, {}> {
-
-  splitName(name: string) {
-    const parts = name.split(', ');
-
-    const city = parts.shift();
-    const other = parts.join(', ');
-
-    return { city, other };
-  }
 
   render() {
     return (
@@ -23,8 +15,8 @@ class CityInfo extends React.Component<ICityInfoProps, {}> {
           </UISref>
         </div>
         <div className='city-info-header'>
-          <h1>{this.splitName(this.props.name).city}</h1>
-          <h5 className='text-muted'>{this.splitName(this.props.name).other}</h5>
+          <h1>{splitAddress(this.props.name).city}</h1>
+          <h5 className='text-muted'>{splitAddress(this.props.name).other}</h5>
         </div>
       </div>
     );
