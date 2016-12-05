@@ -3,13 +3,18 @@ const gutil = require('gulp-util');
 
 const webpack = require('webpack');
 const webpackConf = require('../conf/webpack.conf');
+const webpackDistConf = require('../conf/webpack-dist.conf');
 const gulpConf = require('../conf/gulp.conf');
 
 gulp.task('webpack', done => {
-  webpackWrapper(false, webpackConf, done);
+  webpackWrapper(webpackConf, done);
 });
 
-function webpackWrapper(watch, conf, done) {
+gulp.task('webpack:production', done => {
+  webpackWrapper(webpackDistConf, done);
+});
+
+function webpackWrapper(conf, done) {
   const webpackBundler = webpack(conf);
 
   const webpackChangeHandler = (err, stats) => {
@@ -28,9 +33,5 @@ function webpackWrapper(watch, conf, done) {
     }
   };
 
-  if (watch) {
-    webpackBundler.watch(200, webpackChangeHandler);
-  } else {
-    webpackBundler.run(webpackChangeHandler);
-  }
+  webpackBundler.run(webpackChangeHandler);
 }

@@ -28,10 +28,13 @@ const web = Express();
 
 web.use('/api', middlewares.parseServerMiddleware);
 web.use('/dashboard', middlewares.parseDashboardMiddleware);
-web.use(middlewares.webpackDevMiddleware);
-web.use(middlewares.webpackHotMiddleware);
 web.use(Express.static(path.join(__dirname, '..', 'public')));
 web.get('*', (_req: Express.Request, res: Express.Response) => res.sendFile(path.join(__dirname, '..', 'public', 'build', 'index.html')));
+
+if (process.env.NODE_ENV !== 'production') {
+  web.use(middlewares.webpackDevMiddleware);
+  web.use(middlewares.webpackHotMiddleware);
+}
 
 app.set('web', web);
 

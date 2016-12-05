@@ -10,6 +10,5 @@ const hub = new HubRegistry([conf.path.tasks('*.js')]);
 gulp.registry(hub);
 
 gulp.task('build', gulp.series('webpack'));
-// gulp.task('serve', gulp.series('webpack:watch', 'watch', 'browsersync'));
-// gulp.task('serve:dist', gulp.series('default', 'browsersync:dist'));
+gulp.task('build:production', gulp.series('clean', 'webpack:production'));
 gulp.task('default', gulp.series('clean', 'build'));

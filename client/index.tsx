@@ -1,5 +1,5 @@
 // initialize application
-import app = require('../lib/application');
+import * as app from '../lib/application';
 app.init(require('../conf/client.conf'));
 
 // imports
