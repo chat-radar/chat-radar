@@ -4,7 +4,8 @@ import { observer } from 'mobx-react';
 import { Sidebar, SidebarContent, SidebarFooter } from '../../components/sidebar';
 // import * as Parse from 'parse';
 import { Person } from '../../api';
-import { ListGroup, ListGroupItem } from '../../components/list-group';
+import { ListGroup } from '../../components/list-group';
+import { PersonItem } from '../../components/person-item';
 import { CityInfo } from '../../components/city-info';
 import { Spinner } from '../../components/spinner';
 
@@ -31,7 +32,12 @@ class CityInfoContainer extends React.Component<{}, {}> {
   renderList() {
     const items = this.context.cityStore.currentCityPeople.map((person: Person) => {
       return (
-        <ListGroupItem key={person.id}>{person.get('nickname')}</ListGroupItem>
+        <PersonItem
+          key={person.id}
+          nickname={person.get('nickname')}
+          online={person.get('online')}
+          lastSeen={person.get('lastSeen')}
+        />
       );
     });
 

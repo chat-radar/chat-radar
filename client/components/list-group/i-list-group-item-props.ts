@@ -1,4 +1,5 @@
 interface IListGroupItemProps {
+  className?: string;
   href?: string;
 };
 

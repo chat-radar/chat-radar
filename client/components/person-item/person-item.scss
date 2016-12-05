@@ -1,0 +1,23 @@
+.person-item {
+
+  &-status {
+
+    &-icon {
+      font-size: .5em;
+      vertical-align: middle;
+
+      &-online {
+        color: #62BE6E;
+      }
+      &-offline {
+        color: #FE7E64;
+      }
+    }
+
+    &-text {
+      opacity: .5;
+      margin-left: .5em;
+      vertical-align: middle;
+    }
+  }
+}

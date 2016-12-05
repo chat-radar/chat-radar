@@ -7,6 +7,8 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as Parse from 'parse';
 import UIRouterReact from 'ui-router-react';
+import * as moment from 'moment';
+import 'moment/locale/ru';
 
 // import styles
 import '!style!css!../webpack-loaders/class-prefix-loader!postcss!sass!bootstrap/scss/bootstrap.scss';
@@ -72,5 +74,8 @@ router.stateRegistry.register({
 
 // router.html5Mode(true);
 router.start();
+
+// initialize moment
+moment.locale('ru');
 
 ReactDOM.render(<Root {...stores} />, document.getElementById('root'));
