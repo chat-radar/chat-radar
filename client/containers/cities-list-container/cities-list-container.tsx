@@ -2,11 +2,11 @@ import * as React from 'react';
 import { IStoresContext } from '../../components/root';
 import { observer } from 'mobx-react';
 import { Sidebar, SidebarHeader, SidebarContent, SidebarFooter } from '../../components/sidebar';
-// import * as Parse from 'parse';
 import { City } from '../../api';
 import { UISref } from 'ui-router-react';
-import { ListGroup, ListGroupItem } from '../../components/list-group';
+import { ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText } from '../../components/list-group';
 import { Spinner } from '../../components/spinner';
+import { splitAddress } from '../../../utils';
 
 @observer
 class CitiesListContainer extends React.Component<{}, {}> {
@@ -23,7 +23,10 @@ class CitiesListContainer extends React.Component<{}, {}> {
     const items = this.context.cityStore.cities.map((city: City) => {
       return (
         <UISref key={city.id} to='root.city' params={{cityId: city.id}}>
-          <ListGroupItem>{city.get('name')}</ListGroupItem>
+          <ListGroupItem>
+            <ListGroupItemHeading>{splitAddress(city.get('name')).city}</ListGroupItemHeading>
+            <ListGroupItemText>{splitAddress(city.get('name')).other}</ListGroupItemText>
+          </ListGroupItem>
         </UISref>
       );
     });
