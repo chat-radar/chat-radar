@@ -25,7 +25,7 @@ class CitiesListContainer extends React.Component<{}, {}> {
         <UISref key={city.id} to='root.city' params={{cityId: city.id}}>
           <ListGroupItem>
             <ListGroupItemHeading>{splitAddress(city.get('name')).city}</ListGroupItemHeading>
-            <ListGroupItemText>{splitAddress(city.get('name')).other}</ListGroupItemText>
+            <ListGroupItemText><span className='text-muted'>{splitAddress(city.get('name')).other}</span></ListGroupItemText>
           </ListGroupItem>
         </UISref>
       );
