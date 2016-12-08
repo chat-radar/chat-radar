@@ -54,14 +54,15 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: conf.path.src('index.html'),
     }),
+    new ExtractTextPlugin('chat-radar-[contenthash].css'),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production'),
       'process.env.PARSE_SERVER_URL': JSON.stringify(process.env['PARSE_SERVER_URL']),
     }),
+    new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor-[hash].js' }),
     new webpack.optimize.UglifyJsPlugin({
-      compress: {unused: true, dead_code: true, warnings: false}, // eslint-disable-line camelcase
+      compress: { unused: true, dead_code: true, warnings: false }, // eslint-disable-line camelcase
     }),
-    new ExtractTextPlugin('chat-radar-[contenthash].css'),
   ],
   postcss: () => [autoprefixer],
   output: {
@@ -81,9 +82,21 @@ module.exports = {
       '.css',
     ],
   },
-  entry: [
-    `./${conf.path.src('index')}`,
-  ],
+  entry: {
+    'chat-radar': `./${conf.path.src('index')}`,
+    'vendor': [
+      'classnames',
+      'leaflet',
+      'mobx',
+      'mobx-react',
+      'moment',
+      'react',
+      'react-dom',
+      'react-leaflet',
+      'ui-router-core',
+      'ui-router-react',
+    ],
+  },
   tslint: {
     configuration: require('../tslint.json'),
   },
