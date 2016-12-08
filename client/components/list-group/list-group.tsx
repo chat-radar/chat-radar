@@ -1,5 +1,5 @@
 import * as React from 'react';
-import '!style!css!../../../webpack-loaders/class-prefix-loader!postcss!sass!bootstrap/scss/bootstrap.scss';
+import 'bootstrap/scss/bootstrap.scss';
 import './list-group.scss';
 
 class ListGroup extends React.Component<{}, {}> {

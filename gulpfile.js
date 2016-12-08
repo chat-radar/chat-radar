@@ -9,6 +9,6 @@ const hub = new HubRegistry([conf.path.tasks('*.js')]);
 // Tell gulp to use the tasks just loaded
 gulp.registry(hub);
 
-gulp.task('build', gulp.series('webpack'));
+gulp.task('build', gulp.series('clean', 'webpack'));
 gulp.task('build:production', gulp.series('clean', 'webpack:production'));
 gulp.task('default', gulp.series('clean', 'build'));

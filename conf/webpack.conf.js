@@ -17,19 +17,19 @@ module.exports = {
     ],
     loaders: [
       {
-        test: /.json$/,
+        test: /\.json$/,
         loaders: [
           'json',
         ],
       },
       {
         test: /\.(css|scss)$/,
-        loaders: [
-          'style',
-          'css',
-          'postcss',
-          'sass',
-        ],
+        loaders: 'style!css!postcss!sass',
+        exclude: /bootstrap\.scss$/,
+      },
+      {
+        test: /bootstrap\.scss$/,
+        loaders: 'style!css!postcss!./webpack-loaders/class-prefix-loader!sass',
       },
       {
         test: /\.tsx?$/,

@@ -11,7 +11,7 @@ import * as moment from 'moment';
 import 'moment/locale/ru';
 
 // import styles
-import '!style!css!../webpack-loaders/class-prefix-loader!postcss!sass!bootstrap/scss/bootstrap.scss';
+import 'bootstrap/scss/bootstrap.scss';
 import 'font-awesome/scss/font-awesome.scss';
 import './styles';
 
