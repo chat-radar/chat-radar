@@ -72,7 +72,8 @@ router.stateRegistry.register({
   }],
 });
 
-// router.html5Mode(true);
+router.urlRouterProvider.otherwise('/');
+
 router.start();
 
 // initialize moment
