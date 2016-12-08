@@ -19,20 +19,19 @@ module.exports = {
       },
       {
         test: /\.(css|scss)$/,
-        loaders: [
-          'style',
-          'css',
-          'postcss',
-          'sass',
-        ],
+        loaders: ExtractTextPlugin.extract({
+          fallbackLoader: 'style',
+          loader: 'css?minimize!postcss!sass',
+        }),
+        exclude: /bootstrap\.scss$/,
       },
-      // {
-      //   test: /\.(css|scss)$/,
-      //   loaders: ExtractTextPlugin.extract({
-      //     fallbackLoader: 'style',
-      //     loader: 'css?minimize!postcss!sass',
-      //   }),
-      // },
+      {
+        test: /bootstrap\.scss$/,
+        loaders: ExtractTextPlugin.extract({
+          fallbackLoader: 'style',
+          loader: 'css?minimize!postcss!./webpack-loaders/class-prefix-loader!sass',
+        }),
+      },
       {
         test: /\.tsx?$/,
         exclude: /node_modules/,
