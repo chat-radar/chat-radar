@@ -17,6 +17,8 @@ if (err) throw new Error(`Config validation error: ${err.message}`);
 
 export = {
 
+  'env': env.NODE_ENV,
+
   'logger console level': env.LOG_LEVEL,
 
   'web port': env.WEB_PORT,

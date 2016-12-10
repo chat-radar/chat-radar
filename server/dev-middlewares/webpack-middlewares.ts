@@ -1,5 +1,5 @@
-import webpack = require('webpack');
 import app = require('../../lib/application');
+import webpack = require('webpack');
 const config = require('../../conf/webpack.conf.js');
 const compiler = webpack(config);
 

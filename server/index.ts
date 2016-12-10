@@ -22,19 +22,20 @@ const logger = new winston.Logger({
 app.set('logger', logger);
 
 // setup web server
-import middlewares = require('./middlewares');
-
 const web = Express();
+
+if (app.get('env') !== 'production') {
+  const devMiddlewares = require('./dev-middlewares');
+  web.use(devMiddlewares.webpackDevMiddleware);
+  web.use(devMiddlewares.webpackHotMiddleware);
+}
+
+import * as middlewares from './middlewares';
 
 web.use('/api', middlewares.parseServerMiddleware);
 web.use('/dashboard', middlewares.parseDashboardMiddleware);
 web.use(Express.static(path.join(__dirname, '..', 'public')));
 web.get('*', (_req: Express.Request, res: Express.Response) => res.sendFile(path.join(__dirname, '..', 'public', 'build', 'index.html')));
-
-if (process.env.NODE_ENV !== 'production') {
-  web.use(middlewares.webpackDevMiddleware);
-  web.use(middlewares.webpackHotMiddleware);
-}
 
 app.set('web', web);
 
