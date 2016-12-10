@@ -1,6 +1,6 @@
 .tmp/
 coverage/
-public/
+public/build/
 node_modules/
 npm-debug.log
 typings/
