@@ -51,9 +51,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: conf.path.src('index.html'),
     }),
-    new webpack.DefinePlugin({
-      'process.env.PARSE_SERVER_URL': JSON.stringify(process.env['PARSE_SERVER_URL']),
-    }),
     new webpack.HotModuleReplacementPlugin(),
   ],
   postcss: () => [autoprefixer],

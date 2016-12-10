@@ -1,5 +1,3 @@
-require('dotenv').config({ silent: true });
-
 const webpack = require('webpack');
 const conf = require('./gulp.conf');
 const path = require('path');
@@ -57,7 +55,7 @@ module.exports = {
     new ExtractTextPlugin('chat-radar-[contenthash].css'),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production'),
-      'process.env.PARSE_SERVER_URL': JSON.stringify(process.env['PARSE_SERVER_URL']),
+      'process.env.PARSE_SERVER_URL': JSON.stringify('http://chat-radar.roland.black/api'),
     }),
     new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor-[hash].js' }),
     new webpack.optimize.UglifyJsPlugin({
