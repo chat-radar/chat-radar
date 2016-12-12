@@ -34,6 +34,7 @@ import * as middlewares from './middlewares';
 
 web.use('/api', middlewares.parseServerMiddleware);
 web.use('/dashboard', middlewares.basicAuthMiddleware, middlewares.parseDashboardMiddleware);
+web.get('/vultr', (_req, res: Express.Response) => res.redirect('http://www.vultr.com/?ref=6842617'));
 web.use(Express.static(path.join(__dirname, '..', 'public')));
 web.get('*', (_req, res: Express.Response) => res.redirect('/'));
 
