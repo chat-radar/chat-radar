@@ -65,7 +65,7 @@ module.exports = {
   postcss: () => [autoprefixer],
   output: {
     path: path.join(process.cwd(), conf.paths.dist),
-    publicPath: '/build/',
+    publicPath: '/',
     filename: 'chat-radar-[hash].js',
   },
   resolve: {
@@ -79,6 +79,10 @@ module.exports = {
       '.scss',
       '.css',
     ],
+  },
+  externals: {
+    'react': 'React',
+    'react-dom': 'ReactDOM',
   },
   entry: {
     'chat-radar': `./${conf.path.src('index')}`,

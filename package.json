@@ -23,7 +23,6 @@
     "classnames": "^2.2.5",
     "dotenv": "^2.0.0",
     "express": "^4.14.0",
-    "font-awesome": "^4.7.0",
     "joi": "^10.0.5",
     "leaflet": "^1.0.2",
     "mobx": "^2.7.0",

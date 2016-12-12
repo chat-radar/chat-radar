@@ -12,7 +12,6 @@ import 'moment/locale/ru';
 
 // import styles
 import 'bootstrap/scss/bootstrap.scss';
-import 'font-awesome/scss/font-awesome.scss';
 import './styles';
 
 // import files

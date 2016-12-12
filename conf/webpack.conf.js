@@ -58,7 +58,7 @@ module.exports = {
   devtool: 'source-map',
   output: {
     path: path.join(process.cwd(), conf.paths.dist),
-    publicPath: '/build/',
+    publicPath: '/',
     filename: 'chat-radar.js',
   },
   resolve: {
@@ -72,6 +72,10 @@ module.exports = {
       '.scss',
       '.css',
     ],
+  },
+  externals: {
+    'react': 'React',
+    'react-dom': 'ReactDOM',
   },
   entry: [
     'webpack-hot-middleware/client',
