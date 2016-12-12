@@ -34,8 +34,9 @@ import * as middlewares from './middlewares';
 
 web.use('/api', middlewares.parseServerMiddleware);
 web.use('/dashboard', middlewares.basicAuthMiddleware, middlewares.parseDashboardMiddleware);
+web.get('/', (_req, res: Express.Response) => res.sendFile(path.join(__dirname, '..', 'public', 'build', 'index.html')));
 web.use(Express.static(path.join(__dirname, '..', 'public')));
-web.get('*', (_req: Express.Request, res: Express.Response) => res.sendFile(path.join(__dirname, '..', 'public', 'build', 'index.html')));
+web.get('*', (_req, res: Express.Response) => res.redirect('/'));
 
 app.set('web', web);
 
