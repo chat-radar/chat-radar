@@ -15,6 +15,9 @@ import 'bootstrap/scss/bootstrap.scss';
 import 'font-awesome/scss/font-awesome.scss';
 import './styles';
 
+// import files
+import '!!file?name=robots.txt!./robots.txt';
+
 // initialize logger
 const logger = console;
 app.set('logger', logger);
