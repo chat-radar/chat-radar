@@ -29,4 +29,7 @@ export = {
   'parse masterKey': env.PARSE_MASTER_KEY,
   'parse serverURL': env.PARSE_SERVER_URL,
 
+  'auth username': 'dashboard',
+  'auth password': env.PARSE_MASTER_KEY,
+
 };

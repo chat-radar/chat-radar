@@ -17,6 +17,7 @@
     "@types/react-dom": "^0.14.19",
     "@types/webpack": "^2.0.0",
     "@types/winston": "0.0.32",
+    "basic-auth-connect": "^1.0.0",
     "bluebird": "^3.4.6",
     "bootstrap": "^4.0.0-alpha.5",
     "classnames": "^2.2.5",
