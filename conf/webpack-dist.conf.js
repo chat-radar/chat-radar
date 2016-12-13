@@ -80,10 +80,6 @@ module.exports = {
       '.css',
     ],
   },
-  externals: {
-    'react': 'React',
-    'react-dom': 'ReactDOM',
-  },
   entry: {
     'chat-radar': `./${conf.path.src('index')}`,
     'vendor': [

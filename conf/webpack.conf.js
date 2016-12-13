@@ -73,10 +73,6 @@ module.exports = {
       '.css',
     ],
   },
-  externals: {
-    'react': 'React',
-    'react-dom': 'ReactDOM',
-  },
   entry: [
     'webpack-hot-middleware/client',
     `./${conf.path.src('index')}`,
