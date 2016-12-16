@@ -59,12 +59,10 @@ router.stateRegistry.register({
   },
   resolve: [{
     token: 'cities',
-    resolveFn: async () => {
-      await Promise.all([
-        chatStore.fetchChats(),
-        cityStore.fetchCities(),
-        personStore.fetchPeople(),
-      ]);
+    resolveFn: () => {
+      chatStore.fetchChats();
+      cityStore.fetchCities();
+      personStore.fetchPeople();
     },
   }],
 });
@@ -78,13 +76,10 @@ router.stateRegistry.register({
   resolve: [{
     token: 'city',
     deps: ['$transition$'],
-    resolveFn: async (trans) => {
-      await Promise.all([
-        chatStore.fetchChats(),
-        cityStore.fetchCities(),
-        personStore.fetchPeople(),
-      ]);
+    resolveFn: (trans) => {
+      chatStore.fetchChats();
       cityStore.selectCityById(trans.params().cityId);
+      personStore.fetchPeople();
     },
   }],
 });

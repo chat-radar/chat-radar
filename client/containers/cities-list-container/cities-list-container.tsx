@@ -28,6 +28,9 @@ class CitiesListContainer extends React.Component<{}, {}> {
   }
 
   renderList() {
+    if (this.context.cityStore.isFetching || this.context.personStore.isFetching)
+      return this.renderSpinner();
+
     const items = this.context.cityStore.cities.filter((city) => {
       for (let person of this.context.personStore.people)
         if (city.id === person.get('city').id)
@@ -43,9 +46,6 @@ class CitiesListContainer extends React.Component<{}, {}> {
         </UISref>
       );
     });
-
-    if (this.context.cityStore.isFetching || this.context.personStore.isFetching)
-      return this.renderSpinner();
 
     if (items.length < 1)
       return this.renderEmpty();

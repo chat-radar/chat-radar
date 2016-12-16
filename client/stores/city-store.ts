@@ -28,6 +28,7 @@ class CityStore {
   }
 
   async selectCityById(id: string) {
+    await this.fetchCities();
     this.currentCity = this.cities.find((city: City) => city.id === id) || null;
   }
 

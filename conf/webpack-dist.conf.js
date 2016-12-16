@@ -81,7 +81,10 @@ module.exports = {
     ],
   },
   entry: {
-    'chat-radar': `./${conf.path.src('index')}`,
+    'chat-radar': [
+      'babel-polyfill',
+      `./${conf.path.src('index')}`,
+    ],
     'vendor': [
       'classnames',
       'leaflet',

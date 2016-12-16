@@ -29,6 +29,9 @@ class CityInfoContainer extends React.Component<{}, {}> {
   }
 
   renderList() {
+    if (this.context.cityStore.isFetching || this.context.personStore.isFetching || !this.context.cityStore.currentCity)
+      return this.renderSpinner();
+
     const items = this.context.personStore.people.filter((person) => {
       if (person.get('city').id === this.context.cityStore.currentCity.id)
         return true;
@@ -43,9 +46,6 @@ class CityInfoContainer extends React.Component<{}, {}> {
         />
       );
     });
-
-    if (this.context.cityStore.isFetching || this.context.personStore.isFetching)
-      return this.renderSpinner();
 
     if (items.length < 1)
       return this.renderNoPeople();
