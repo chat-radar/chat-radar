@@ -3,7 +3,6 @@ import { IStoresContext } from '../../components/root';
 import { observer } from 'mobx-react';
 import { Sidebar, SidebarContent, SidebarFooter } from '../../components/sidebar';
 // import * as Parse from 'parse';
-import { Person } from '../../api';
 import { ListGroup } from '../../components/list-group';
 import { PersonItem } from '../../components/person-item';
 import { CityInfo } from '../../components/city-info';
@@ -30,7 +29,11 @@ class CityInfoContainer extends React.Component<{}, {}> {
   }
 
   renderList() {
-    const items = this.context.cityStore.currentCityPeople.map((person: Person) => {
+    const items = this.context.personStore.people.filter((person) => {
+      if (person.get('city').id === this.context.cityStore.currentCity.id)
+        return true;
+      return false;
+    }).map((person) => {
       return (
         <PersonItem
           key={person.id}
@@ -40,6 +43,12 @@ class CityInfoContainer extends React.Component<{}, {}> {
         />
       );
     });
+
+    if (this.context.cityStore.isFetching || this.context.personStore.isFetching)
+      return this.renderSpinner();
+
+    if (items.length < 1)
+      return this.renderNoPeople();
 
     return (
       <ListGroup>
@@ -57,23 +66,10 @@ class CityInfoContainer extends React.Component<{}, {}> {
   }
 
   render() {
-    let header = null;
-    let content = null;
-
-    if (!this.context.cityStore.isFetching && this.context.cityStore.currentCity)
-      header = this.renderInfo();
-
-    if (this.context.cityStore.isFetching)
-      content = this.renderSpinner();
-    else if (this.context.cityStore.currentCityPeople.length < 1)
-      content = this.renderNoPeople();
-    else
-      content = this.renderList();
-
     return (
       <Sidebar>
-        {header ? header : null}
-        <SidebarContent>{content}</SidebarContent>
+        {!this.context.cityStore.isFetching && this.context.cityStore.currentCity ? this.renderInfo() : null}
+        <SidebarContent>{this.renderList()}</SidebarContent>
         <SidebarFooter />
       </Sidebar>
     );

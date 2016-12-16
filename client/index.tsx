@@ -63,6 +63,7 @@ router.stateRegistry.register({
       await Promise.all([
         chatStore.fetchChats(),
         cityStore.fetchCities(),
+        personStore.fetchPeople(),
       ]);
     },
   }],
@@ -81,6 +82,7 @@ router.stateRegistry.register({
       await Promise.all([
         chatStore.fetchChats(),
         cityStore.fetchCities(),
+        personStore.fetchPeople(),
       ]);
       cityStore.selectCityById(trans.params().cityId);
     },

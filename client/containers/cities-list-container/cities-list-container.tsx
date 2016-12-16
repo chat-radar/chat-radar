@@ -19,8 +19,21 @@ class CitiesListContainer extends React.Component<{}, {}> {
 
   context: IStoresContext;
 
+  renderEmpty() {
+    return (<div>Городов пока нет</div>);
+  }
+
+  renderSpinner() {
+    return (<Spinner />);
+  }
+
   renderList() {
-    const items = this.context.cityStore.cities.map((city: City) => {
+    const items = this.context.cityStore.cities.filter((city) => {
+      for (let person of this.context.personStore.people)
+        if (city.id === person.get('city').id)
+          return true;
+      return false;
+    }).map((city: City) => {
       return (
         <UISref key={city.id} to='root.city' params={{cityId: city.id}}>
           <ListGroupItem>
@@ -31,6 +44,12 @@ class CitiesListContainer extends React.Component<{}, {}> {
       );
     });
 
+    if (this.context.cityStore.isFetching || this.context.personStore.isFetching)
+      return this.renderSpinner();
+
+    if (items.length < 1)
+      return this.renderEmpty();
+
     return (
       <ListGroup>
         {items}
@@ -38,28 +57,11 @@ class CitiesListContainer extends React.Component<{}, {}> {
     );
   }
 
-  renderEmpty() {
-    return (<div>Городов пока нет</div>);
-  }
-
-  renderSpinner() {
-    return (<Spinner />);
-  }
-
   render() {
-    let content = null;
-
-    if (this.context.cityStore.isFetching)
-      content = this.renderSpinner();
-    else if (this.context.cityStore.cities.length < 1)
-      content = this.renderEmpty();
-    else
-      content = this.renderList();
-
     return (
       <Sidebar>
         <SidebarHeader />
-        <SidebarContent>{content}</SidebarContent>
+        <SidebarContent>{this.renderList()}</SidebarContent>
         <SidebarFooter />
       </Sidebar>
     );

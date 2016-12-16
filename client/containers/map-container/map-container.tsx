@@ -24,16 +24,27 @@ class MapContainer extends React.Component<{}, {}> {
   }
 
   render() {
-    if (this.context.chatStore.currentChat === null)
+    if (this.context.chatStore.currentChat === null
+     || this.context.cityStore.cities.length < 1
+     || this.context.personStore.people.length < 1)
       return null;
-    if (this.context.cityStore.cities.length < 1)
-      return null;
+
+    const cities = this.context.cityStore.cities.filter((city) => {
+      for (let person of this.context.personStore.people)
+        if (city.id === person.get('city').id)
+          return true;
+      return false;
+    });
+
+    const currentCity = this.context.cityStore.currentCity;
+
+    const markerFile = this.context.chatStore.currentChat.get('marker');
 
     return (
       <BackgroundMap
-        cities={this.context.cityStore.cities}
-        currentCity={this.context.cityStore.currentCity}
-        markerFile={this.context.chatStore.currentChat.get('marker')}
+        cities={cities}
+        currentCity={currentCity}
+        markerFile={markerFile}
         onCityClick={this.handleCityClick.bind(this)}
       />
     );

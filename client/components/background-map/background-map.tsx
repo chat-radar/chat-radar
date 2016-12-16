@@ -11,7 +11,7 @@ class BackgroundMap extends React.Component<IBackgroundMapProps, {}> {
   static tilesUrl = 'http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png';
   // static tilesUrl = 'http://tiles.maps.sputnik.ru/{z}/{x}/{y}.png';
 
-  static tilesAttribution = '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="https://carto.com/attributions">CARTO</a>';
+  static tilesAttribution = '&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors, &copy; <a href="https://carto.com/attributions" target="_blank">CARTO</a>';
 
   static zoom = 3;
 
