@@ -8,40 +8,43 @@ class CityStore {
 
   @observable currentCity: City = null;
 
-  @observable currentCityPeople: Person[] = [];
+  @observable currentCityPeople: Person[] = null;
 
   @observable isFetching: boolean = false;
 
-  constructor() {
+  async fetchCities() {
+    if (this.isFetching || this.cities.length > 0)
+      return;
+
     this.isFetching = true;
-    (new Parse.Query(Person)).find().then((people: Person[]) => {
-      return people.map(person => person.get('city'));
-    }).then((cities: City[]) => {
-      return (new Parse.Query(City))
+
+    try {
+      this.cities = await (new Parse.Query(City))
         .ascending('name')
-        .containedIn('objectId', cities.map(city => city.id))
+        .matchesQuery('people', new Parse.Query(Person))
         .find();
-    }).then((cities: City[]) => {
-      this.cities = cities;
-      this.isFetching = false;
-    });
+    } catch (err) {
+      console.error(err);
+    }
+
+    this.isFetching = false;
   }
 
-  selectCityById(id: string) {
-    this.currentCity = null;
-    this.currentCityPeople = [];
+  async selectCityById(id: string) {
+    this.currentCity = this.cities.find((city: City) => city.id === id) || null;
+
+    if (this.currentCity === null)
+      return;
 
     this.isFetching = true;
-    (new Parse.Query(City)).equalTo('objectId', id).find().then((cities: City[]) => {
-      if (cities.length < 1)
-        throw new Error('City not found');
-      return this.currentCity = cities[0];
-    }).then((currentCity: City) => {
-      return (new Parse.Query(Person)).equalTo('city', currentCity).find();
-    }).then((people: Person[]) => {
-      this.currentCityPeople = people;
-      this.isFetching = false;
-    });
+
+    try {
+      this.currentCityPeople = await this.currentCity.get('people').query().find();
+    } catch (err) {
+      console.error(err);
+    }
+
+    this.isFetching = false;
   }
 
 }
