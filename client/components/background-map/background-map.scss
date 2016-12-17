@@ -7,20 +7,19 @@
   bottom: 0;
   left: 0;
 
+  &-marker-wrap {
+    width: 32px !important;
+    height: 32px !important;
+    margin-top: -16px !important;
+    margin-left: -16px !important;
+  }
   &-marker {
     display: block;
-    position: absolute;
-    margin-top: -16px;
-    margin-left: -16px;
     width: 32px;
     height: 32px;
     background-position: center;
     background-size: cover;
     cursor: pointer;
-
-    &:hover {
-      z-index: 9999;
-    }
 
     &-tooltip {
       text-align: center;
