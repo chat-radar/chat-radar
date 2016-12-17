@@ -28,13 +28,6 @@ class MapContainer extends React.Component<{}, {}> {
      || this.context.personStore.people.length < 1)
       return null;
 
-    // const cities = this.context.cityStore.cities.filter((city) => {
-    //   for (let person of this.context.personStore.people)
-    //     if (city.id === person.get('city').id)
-    //       return true;
-    //   return false;
-    // });
-
     const cities = this.context.cityStore.cities;
     const people = this.context.personStore.people;
     const currentCity = this.context.cityStore.currentCity;
