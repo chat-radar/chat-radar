@@ -58,6 +58,7 @@ class CitiesListContainer extends React.Component<{}, {}> {
   }
 
   render() {
+
     return (
       <Sidebar>
         <SidebarHeader />

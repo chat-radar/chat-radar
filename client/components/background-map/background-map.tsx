@@ -52,11 +52,25 @@ class BackgroundMap extends React.Component<IBackgroundMapProps, IBackgroundMapS
   }
 
   protected getMarkers() {
-    return this.props.cities.map((city) => ({
-      city: city,
-      file: this.props.markerFile,
-      onClick: this.props.onCityClick,
-    }));
+    return this.props.cities
+      .map((city) => {
+        const people = this.props.people.filter((person) => {
+          if (city.id === person.get('city').id)
+            return true;
+          return false;
+        });
+
+        if (people.length < 1)
+          return null;
+
+        const file = this.props.markerFile;
+        const onClick = this.props.onCityClick;
+
+        return { city, people, file, onClick };
+      })
+      .filter((city) => {
+        return !!city;
+      });
   }
 
   render() {

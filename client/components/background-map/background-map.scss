@@ -9,6 +9,7 @@
 
   &-marker {
     display: block;
+    position: absolute;
     margin-top: -16px;
     margin-left: -16px;
     width: 32px;
@@ -16,5 +17,20 @@
     background-position: center;
     background-size: cover;
     cursor: pointer;
+
+    &:hover {
+      z-index: 9999;
+    }
+
+    &-tooltip {
+      text-align: center;
+      background-color: rgba(#25282A, .97) !important;
+      color: white !important;
+
+      &-description {
+        margin: 0;
+        white-space: nowrap;
+      }
+    }
   }
 }

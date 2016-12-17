@@ -1,10 +1,11 @@
 import * as Parse from 'parse';
-import { City } from '../../api';
+import { City, Person } from '../../api';
 
 interface IBackgroundMapMarkerProps {
   style: any;
   marker: {
     city: City;
+    people: Person[];
     file: Parse.File;
     onClick: any;
   };
