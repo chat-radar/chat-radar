@@ -13,29 +13,14 @@
   border-radius: .2rem;
 
   &-content {
-    // padding: 1.25rem 0;
+    padding: 1.25rem;
   }
 
   &-header,
   &-footer {
     text-align: center;
-    padding: 2rem 0;
-    // font-weight: 300;
-    // font-size: 1.6em;
-    // line-height: 1em;
+    padding: 1.25rem;
     position: relative;
-
-    // &::before {
-    //   content: '';
-    //   display: block;
-    //   height: 0;
-    //   position: absolute;
-    //   right: 1.2rem;
-    //   bottom: -1px;
-    //   left: 1.2rem;
-    //   border-top: 1px solid rgba(black, .1);
-    //   border-bottom: 1px solid rgba(white, .1);
-    // }
 
     h1,
     h2,
@@ -49,10 +34,5 @@
 
   &-footer {
     font-size: .8em;
-
-    // &::before {
-    //   top: -1px;
-    //   bottom: auto;
-    // }
   }
 }

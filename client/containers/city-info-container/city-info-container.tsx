@@ -29,8 +29,11 @@ class CityInfoContainer extends React.Component<{}, {}> {
   }
 
   renderList() {
-    if (this.context.cityStore.isFetching || this.context.personStore.isFetching || !this.context.cityStore.currentCity)
+    if (this.context.cityStore.isFetching || this.context.personStore.isFetching)
       return this.renderSpinner();
+
+    if (!this.context.cityStore.currentCity)
+      return this.renderNoCity();
 
     const items = this.context.personStore.people.filter((person) => {
       if (person.get('city').id === this.context.cityStore.currentCity.id)
@@ -57,8 +60,12 @@ class CityInfoContainer extends React.Component<{}, {}> {
     );
   }
 
+  renderNoCity() {
+    return (<SidebarContent>Населенный пункт не найден</SidebarContent>);
+  }
+
   renderNoPeople() {
-    return (<div>Никого онлайн</div>);
+    return (<SidebarContent>Никого онлайн</SidebarContent>);
   }
 
   renderSpinner() {
@@ -69,7 +76,7 @@ class CityInfoContainer extends React.Component<{}, {}> {
     return (
       <Sidebar>
         {!this.context.cityStore.isFetching && this.context.cityStore.currentCity ? this.renderInfo() : null}
-        <SidebarContent>{this.renderList()}</SidebarContent>
+        {this.renderList()}
         <SidebarFooter />
       </Sidebar>
     );

@@ -20,7 +20,7 @@ class CitiesListContainer extends React.Component<{}, {}> {
   context: IStoresContext;
 
   renderEmpty() {
-    return (<div>Городов пока нет</div>);
+    return (<SidebarContent>Городов пока нет</SidebarContent>);
   }
 
   renderSpinner() {
@@ -61,7 +61,7 @@ class CitiesListContainer extends React.Component<{}, {}> {
     return (
       <Sidebar>
         <SidebarHeader />
-        <SidebarContent>{this.renderList()}</SidebarContent>
+        {this.renderList()}
         <SidebarFooter />
       </Sidebar>
     );
