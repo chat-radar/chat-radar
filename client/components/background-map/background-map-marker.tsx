@@ -3,7 +3,7 @@ import IBackgroundMapMarkerProps from './i-background-map-marker-props';
 import * as ReactTooltip from 'react-tooltip';
 import DivIcon from 'react-leaflet-div-icon';
 import * as classnames from 'classnames';
-import { splitAddress } from '../../../utils';
+import { getCity } from '../../../utils';
 
 import './background-map.scss';
 
@@ -32,7 +32,7 @@ class BackgroundMapMarker extends React.Component<IBackgroundMapMarkerProps, {}>
         >
           <div className='background-map-marker-icon' style={{backgroundImage}}></div>
           <ReactTooltip id={id} class='background-map-marker-tooltip'>
-            <h5 className='background-map-marker-tooltip-title'>{splitAddress(this.props.city.get('name')).city}</h5>
+            <h5 className='background-map-marker-tooltip-title'>{getCity(this.props.city.get('address'), this.props.city.get('name'))}</h5>
             <p className='background-map-marker-tooltip-description'>{ online ? `онлайн: ${online}` : 'никого онлайн' }</p>
           </ReactTooltip>
         </div>

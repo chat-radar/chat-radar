@@ -7,6 +7,7 @@ import { ListGroup } from '../../components/list-group';
 import { PersonItem } from '../../components/person-item';
 import { CityInfo } from '../../components/city-info';
 import { Spinner } from '../../components/spinner';
+import { getCity } from '../../../utils';
 
 @observer
 class CityInfoContainer extends React.Component<{}, {}> {
@@ -20,10 +21,13 @@ class CityInfoContainer extends React.Component<{}, {}> {
   context: IStoresContext;
 
   renderInfo() {
+    const city = this.context.cityStore.currentCity;
+
     return (
       <CityInfo
-        name={this.context.cityStore.currentCity.get('name')}
-        photoUrl={this.context.cityStore.currentCity.get('photoUrl')}
+        cityName={getCity(city.get('address'), city.get('name'))}
+        fullName={city.get('name')}
+        photoUrl={city.get('photoUrl')}
       />
     );
   }

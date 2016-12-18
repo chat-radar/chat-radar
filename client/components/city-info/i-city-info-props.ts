@@ -1,5 +1,6 @@
 interface ICityInfoProps {
-  name: string;
+  cityName: string;
+  fullName: string;
   photoUrl?: string;
 };
 

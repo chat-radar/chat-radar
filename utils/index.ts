@@ -1,5 +1,5 @@
-import splitAddress from './split-address';
+import getCity from './get-city';
 
 export {
-  splitAddress,
+  getCity,
 };

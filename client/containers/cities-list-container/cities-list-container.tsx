@@ -6,7 +6,7 @@ import { City } from '../../api';
 import { UISref } from 'ui-router-react';
 import { ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText } from '../../components/list-group';
 import { Spinner } from '../../components/spinner';
-import { splitAddress } from '../../../utils';
+import { getCity } from '../../../utils';
 
 @observer
 class CitiesListContainer extends React.Component<{}, {}> {
@@ -40,8 +40,8 @@ class CitiesListContainer extends React.Component<{}, {}> {
       return (
         <UISref key={city.id} to='root.city' params={{cityId: city.id}}>
           <ListGroupItem>
-            <ListGroupItemHeading>{splitAddress(city.get('name')).city}</ListGroupItemHeading>
-            <ListGroupItemText><span className='text-muted'>{splitAddress(city.get('name')).other}</span></ListGroupItemText>
+            <ListGroupItemHeading>{getCity(city.get('address'), city.get('name'))}</ListGroupItemHeading>
+            <ListGroupItemText><span className='text-muted'>{city.get('name')}</span></ListGroupItemText>
           </ListGroupItem>
         </UISref>
       );
