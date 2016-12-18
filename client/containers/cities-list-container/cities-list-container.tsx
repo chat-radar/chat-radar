@@ -47,7 +47,7 @@ class CitiesListContainer extends React.Component<{}, {}> {
           <ListGroupItem>
             <ListGroupItemHeading>{cityName}</ListGroupItemHeading>
             <ListGroupItemText>
-              <span className='text-muted'>{ onlineCount ? `${onlineCount} онлайн` : `никого онлайн, последняя активность ${moment(lastSeen).toNow(true)} назад` }</span>
+              <span className='text-muted'>{ onlineCount ? `${onlineCount} онлайн` : `никого онлайн, последняя активность была ${moment(lastSeen).toNow(true)} назад` }</span>
             </ListGroupItemText>
           </ListGroupItem>
         </UISref>
