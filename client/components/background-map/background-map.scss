@@ -14,12 +14,17 @@
     margin-left: -16px !important;
   }
   &-marker {
-    display: block;
-    width: 32px;
-    height: 32px;
-    background-position: center;
-    background-size: cover;
     cursor: pointer;
+
+    &-icon {
+      width: 32px;
+      height: 32px;
+      background-position: center;
+      background-size: cover;
+    }
+    &-offline &-icon {
+      filter: grayscale(100%);
+    }
 
     &-tooltip {
       text-align: center;
