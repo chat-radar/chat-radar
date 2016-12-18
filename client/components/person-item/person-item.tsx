@@ -2,6 +2,7 @@ import * as React from 'react';
 import IPersonItemProps from './i-person-item-props';
 import { ListGroupItem, ListGroupItemHeading, ListGroupItemText } from '../list-group';
 import * as moment from 'moment';
+
 import './person-item.scss';
 
 class PersonItem extends React.Component<IPersonItemProps, {}> {
@@ -11,14 +12,14 @@ class PersonItem extends React.Component<IPersonItemProps, {}> {
       return (
         <div className='person-item-status'>
           <i className='person-item-status-icon person-item-status-icon-online fa fa-circle'></i>
-          <span className='text-muted person-item-status-text'>в сети</span>
+          <span className='text-muted person-item-status-text'>онлайн</span>
         </div>
       );
     } else {
       return (
         <div className='person-item-status'>
           <i className='person-item-status-icon person-item-status-icon-offline fa fa-circle'></i>
-          <span className='text-muted person-item-status-text'>последний раз был(а) {moment(this.props.lastSeen).toNow(true)} назад</span>
+          <span className='text-muted person-item-status-text'>последняя активность {moment(this.props.lastSeen).toNow(true)} назад</span>
         </div>
       );
     }

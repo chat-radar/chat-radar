@@ -3,9 +3,12 @@ import { City, Person } from '../../api';
 
 interface IBackgroundMapMarkerProps {
   city: City;
-  people: Person[];
+  people: {
+    inCity: Person[];
+    online: Person[];
+  };
   file: Parse.File;
-  onClick: any;
+  onClick: Function;
 };
 
 export default IBackgroundMapMarkerProps;

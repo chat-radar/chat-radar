@@ -6,7 +6,8 @@ import { City } from '../../api';
 import { UISref } from 'ui-router-react';
 import { ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText } from '../../components/list-group';
 import { Spinner } from '../../components/spinner';
-import { getCity } from '../../../utils';
+import * as moment from 'moment';
+import { getCity, filterPeople } from '../../../utils';
 
 @observer
 class CitiesListContainer extends React.Component<{}, {}> {
@@ -31,20 +32,28 @@ class CitiesListContainer extends React.Component<{}, {}> {
     if (this.context.cityStore.isFetching || this.context.personStore.isFetching)
       return this.renderSpinner();
 
-    const items = this.context.cityStore.cities.filter((city) => {
-      for (let person of this.context.personStore.people)
-        if (city.id === person.get('city').id)
-          return true;
-      return false;
-    }).map((city: City) => {
+    const items = this.context.cityStore.cities.map((city: City) => {
+      const people = filterPeople(this.context.personStore.people, city);
+
+      if (people.inCity.length < 1)
+        return null;
+
+      const cityName = getCity(city.get('address'), city.get('name'));
+      const onlineCount = people.online.length;
+      const lastSeen = Math.max.apply(null, people.inCity.map(c => c.get('lastSeen') as number));
+
       return (
         <UISref key={city.id} to='root.city' params={{cityId: city.id}}>
           <ListGroupItem>
-            <ListGroupItemHeading>{getCity(city.get('address'), city.get('name'))}</ListGroupItemHeading>
-            <ListGroupItemText><span className='text-muted'>{city.get('name')}</span></ListGroupItemText>
+            <ListGroupItemHeading>{cityName}</ListGroupItemHeading>
+            <ListGroupItemText>
+              <span className='text-muted'>{ onlineCount ? `${onlineCount} онлайн` : `никого онлайн, последняя активность ${moment(lastSeen).toNow(true)} назад` }</span>
+            </ListGroupItemText>
           </ListGroupItem>
         </UISref>
       );
+    }).filter((city) => {
+      return !!city;
     });
 
     if (items.length < 1)

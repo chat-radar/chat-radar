@@ -4,6 +4,7 @@ import IBackgroundMapState from './i-background-map-state';
 // import * as L from 'leaflet';
 const { Map, TileLayer, ZoomControl } = require('react-leaflet');
 import BackgroundMapMarker from './background-map-marker';
+import { filterPeople } from '../../../utils';
 
 import 'leaflet/dist/leaflet.css';
 import './background-map.scss';
@@ -48,13 +49,9 @@ class BackgroundMap extends React.Component<IBackgroundMapProps, IBackgroundMapS
   protected renderMarkers() {
     return this.props.cities
       .map((city) => {
-        const people = this.props.people.filter((person) => {
-          if (city.id === person.get('city').id)
-            return true;
-          return false;
-        });
+        const people = filterPeople(this.props.people, city);
 
-        if (people.length < 1)
+        if (people.inCity.length < 1)
           return null;
 
         const key = city.id;

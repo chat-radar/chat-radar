@@ -15,25 +15,26 @@ class BackgroundMapMarker extends React.Component<IBackgroundMapMarkerProps, {}>
 
   render() {
     const id = 'background-map-marker-' + this.props.city.id;
-    const backgroundImage = `url('${this.props.file.url()}')`;
-    const online = this.props.people.filter((person) => person.get('online')).length;
     const position = {
       lat: parseFloat(this.props.city.get('geo').latitude),
       lon: parseFloat(this.props.city.get('geo').longitude),
     };
+    const backgroundImage = `url('${this.props.file.url()}')`;
+    const title = getCity(this.props.city.get('address'), this.props.city.get('name'));
+    const onlineCount = this.props.people.online.length;
 
     return (
       <DivIcon position={position} className='background-map-marker-wrap'>
         <div
-          className={classnames({'background-map-marker': true, 'background-map-marker-online': !!online, 'background-map-marker-offline': !online})}
+          className={classnames({'background-map-marker': true, 'background-map-marker-online': !!onlineCount, 'background-map-marker-offline': !onlineCount})}
           onClick={this.handleClick.bind(this)}
           data-tip
           data-for={id}
         >
           <div className='background-map-marker-icon' style={{backgroundImage}}></div>
           <ReactTooltip id={id} class='background-map-marker-tooltip'>
-            <h5 className='background-map-marker-tooltip-title'>{getCity(this.props.city.get('address'), this.props.city.get('name'))}</h5>
-            <p className='background-map-marker-tooltip-description'>{ online ? `онлайн: ${online}` : 'никого онлайн' }</p>
+            <h5 className='background-map-marker-tooltip-title'>{title}</h5>
+            <p className='background-map-marker-tooltip-description'>{ onlineCount ? `${onlineCount} онлайн` : 'никого онлайн' }</p>
           </ReactTooltip>
         </div>
       </DivIcon>
