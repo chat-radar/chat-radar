@@ -1,5 +1,6 @@
 {
   "name": "chat-radar",
+  "license": "MIT",
   "scripts": {
     "start": "./bin/chat-radar",
     "build": "gulp build",
