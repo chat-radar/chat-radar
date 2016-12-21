@@ -13,15 +13,13 @@ class CityInfo extends React.Component<ICityInfoProps, ICityInfoState> {
   constructor(props: ICityInfoProps) {
     super(props);
 
-    this.state = {
-      time: moment().utcOffset(props.timeZone),
-    };
+    let time = props.timeZone ? moment().utcOffset(props.timeZone) : null;
+    this.state = { time };
   }
 
   componentWillReceiveProps(props: ICityInfoProps) {
-    this.setState({
-      time: moment().utcOffset(props.timeZone)
-    });
+    let time = props.timeZone ? moment().utcOffset(props.timeZone) : null;
+    this.setState({ time });
   }
 
   componentDidMount() {
@@ -33,7 +31,11 @@ class CityInfo extends React.Component<ICityInfoProps, ICityInfoState> {
   }
 
   protected tick() {
-    this.setState({ time: this.state.time.add(1, 's') });
+    if (!this.props.timeZone)
+      return;
+
+    let time = this.state.time.add(1, 's');
+    this.setState({ time });
   }
 
   protected renderProps() {
