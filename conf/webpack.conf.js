@@ -77,6 +77,9 @@ module.exports = {
     'webpack-hot-middleware/client',
     `./${conf.path.src('index')}`,
   ],
+  ts: {
+    silent: true,
+  },
   tslint: {
     configuration: require('../tslint.json'),
   },
