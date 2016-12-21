@@ -19,7 +19,7 @@
   }
 
   &-nav {
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
     position: relative;
     z-index: 2;
 
@@ -44,17 +44,35 @@
     text-shadow: 0 0 .3rem rgba(black, .25);
     position: relative;
     z-index: 2;
+    margin-bottom: 1rem;
 
     h1,
     h2,
     h3,
     h4,
     h5,
-    p {
+    p,
+    & {
 
       &:last-child {
-        margin: 0;
+        margin-bottom: 0;
       }
+    }
+  }
+
+  &-props {
+    display: block;
+    padding: 0;
+    margin: 0;
+    font-size: .8em;
+    line-height: 1.3rem;
+    text-transform: lowercase;
+    position: relative;
+    z-index: 2;
+
+    &-item {
+      display: block;
+      list-style: none;
     }
   }
 }
