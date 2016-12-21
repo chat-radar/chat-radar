@@ -27,7 +27,7 @@ class CityInfoContainer extends React.Component<{}, {}> {
       <CityInfo
         cityName={getCity(city.get('address'), city.get('name'))}
         fullName={city.get('name')}
-        photoUrl={city.get('photoUrl')}
+        photoUrl={city.get('photoUrl') + '?width=640'}
         timeZone={city.get('timeZone')}
         inception={city.get('inception')}
         area={city.get('area')}
