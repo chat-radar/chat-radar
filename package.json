@@ -67,7 +67,7 @@
     "html-webpack-plugin": "^2.24.1",
     "json-loader": "^0.5.4",
     "node-sass": "^4.1.1",
-    "npm-check-updates": "^2.8.8",
+    "npm-check-updates": "^2.8.9",
     "postcss-class-prefix": "^0.3.0",
     "postcss-loader": "^1.2.1",
     "sass-loader": "^4.1.1",
