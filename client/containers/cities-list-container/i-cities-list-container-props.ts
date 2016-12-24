@@ -1,9 +1,9 @@
 import { CityStore, ChatStore, PersonStore } from '../../stores';
 
-interface IStoresContext {
+interface ICityInfoContainerProps {
   personStore: PersonStore;
   cityStore: CityStore;
   chatStore: ChatStore;
 };
 
-export default IStoresContext;
+export default ICityInfoContainerProps;

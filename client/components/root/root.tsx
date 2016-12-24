@@ -1,30 +1,25 @@
 import * as React from 'react';
+import { Provider } from 'mobx-react';
 import { UIView } from 'ui-router-react';
 import IRootProps from './i-root-props';
 import './root.scss';
 
 class Root extends React.Component<IRootProps, {}> {
 
-  static childContextTypes = {
-    personStore: React.PropTypes.object.isRequired,
-    cityStore: React.PropTypes.object.isRequired,
-    chatStore: React.PropTypes.object.isRequired,
-  };
-
-  getChildContext() {
-    return {
-      personStore: this.props.personStore,
-      cityStore: this.props.cityStore,
-      chatStore: this.props.chatStore,
-    };
-  }
-
   render() {
+    const { personStore, cityStore, chatStore } = this.props;
+
     return (
-      <div className='root'>
-        <UIView name='background' />
-        <UIView />
-      </div>
+      <Provider
+        personStore={personStore}
+        cityStore={cityStore}
+        chatStore={chatStore}
+      >
+        <div className='root'>
+          <UIView name='background' />
+          <UIView />
+        </div>
+      </Provider>
     );
   }
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { IStoresContext } from '../../components/root';
-import { observer } from 'mobx-react';
+import ICitiesListContainerProps from './i-cities-list-container-props';
+import { observer, inject } from 'mobx-react';
 import { Sidebar, SidebarHeader, SidebarContent, SidebarFooter } from '../../components/sidebar';
 import { City } from '../../api';
 import { UISref } from 'ui-router-react';
@@ -9,16 +9,11 @@ import { Spinner } from '../../components/spinner';
 import * as moment from 'moment';
 import { getCity, filterPeople } from '../../../utils';
 
+@inject('chatStore')
+@inject('cityStore')
+@inject('personStore')
 @observer
-class CitiesListContainer extends React.Component<{}, {}> {
-
-  static contextTypes = {
-    personStore: React.PropTypes.object.isRequired,
-    cityStore: React.PropTypes.object.isRequired,
-    chatStore: React.PropTypes.object.isRequired,
-  };
-
-  context: IStoresContext;
+class CitiesListContainer extends React.Component<ICitiesListContainerProps, {}> {
 
   renderEmpty() {
     return (<SidebarContent>Городов пока нет</SidebarContent>);
@@ -29,11 +24,11 @@ class CitiesListContainer extends React.Component<{}, {}> {
   }
 
   renderList() {
-    if (this.context.cityStore.isFetching || this.context.personStore.isFetching)
+    if (this.props.cityStore.isFetching || this.props.personStore.isFetching)
       return this.renderSpinner();
 
-    const items = this.context.cityStore.cities.map((city: City) => {
-      const people = filterPeople(this.context.personStore.people, city);
+    const items = this.props.cityStore.cities.map((city: City) => {
+      const people = filterPeople(this.props.personStore.people, city);
 
       if (people.inCity.length < 1)
         return null;
