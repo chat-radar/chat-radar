@@ -1,7 +1,9 @@
+import http = require('http');
 import Express = require('express');
 import Bluebird = require('bluebird');
 import winston = require('winston');
 import app = require('../lib/application');
+const { ParseServer } = require('parse-server');
 
 // initialize application
 app.init(require('../conf/server.conf'));
@@ -21,26 +23,29 @@ const logger = new winston.Logger({
 app.set('logger', logger);
 
 // setup web server
-const web = Express();
+const express = Express();
+const httpServer = http.createServer(express);
 
 if (app.get('env') !== 'production') {
   const devMiddlewares = require('./dev-middlewares');
-  web.use(devMiddlewares.webpackDevMiddleware);
-  web.use(devMiddlewares.webpackHotMiddleware);
+  express.use(devMiddlewares.webpackDevMiddleware);
+  express.use(devMiddlewares.webpackHotMiddleware);
 }
 
 import * as middlewares from './middlewares';
 
-web.use('/api', middlewares.parseServerMiddleware);
-web.use('/dashboard', middlewares.basicAuthMiddleware, middlewares.parseDashboardMiddleware);
-web.get('/vultr', (_req, res: Express.Response) => res.redirect('http://www.vultr.com/?ref=6842617'));
-web.use(middlewares.staticMiddleware);
-web.get('*', (_req, res: Express.Response) => res.redirect('/'));
+express.use('/api', middlewares.parseServerMiddleware);
+express.use('/dashboard', middlewares.basicAuthMiddleware, middlewares.parseDashboardMiddleware);
+express.get('/vultr', (_req, res: Express.Response) => res.redirect('http://www.vultr.com/?ref=6842617'));
+express.use(middlewares.staticMiddleware);
+express.get('*', (_req, res: Express.Response) => res.redirect('/'));
 
-app.set('web', web);
+app.set('express', express);
 
 app.boot().then(() => {
-  (<any>Bluebird.promisifyAll(web)).listenAsync(app.get('web port'));
+  (<any>Bluebird.promisify(httpServer.listen.bind(httpServer)))(app.get('httpServer port'));
+}).then(() => {
+  ParseServer.createLiveQueryServer(httpServer);
 }).then(() => {
   logger.info('Server listening at %s', app.get('parse serverURL'));
 }).catch((err) => {

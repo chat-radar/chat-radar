@@ -8,6 +8,9 @@ const parseServerMiddleware = new ParseServer({
   masterKey: app.get('parse masterKey'),
   serverURL: app.get('parse serverURL'),
   loggerAdapter: app.get('logger'),
+  liveQuery: {
+    classNames: app.get('parse liveQuery classes'),
+  },
 });
 
 export = parseServerMiddleware;
