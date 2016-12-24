@@ -1,7 +1,7 @@
 import { City, Person } from '../client/api';
 
-export default function filterPeople(people: Person[], city: City) {
-  const inCity = people.filter((person) => {
+export default function filterPeople(people: Person[], city: City = null) {
+  const inCity = (city === null) ? [] : people.filter((person) => {
     if (person.get('city').id === city.id)
       return true;
     return false;

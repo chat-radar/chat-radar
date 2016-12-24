@@ -1,14 +1,26 @@
-import { observable } from 'mobx';
+import { observable, computed } from 'mobx';
 import * as Parse from 'parse';
+import PersonStore from './person-store';
 import { City } from '../api';
+import { filterPeople } from '../../utils';
 
 class CityStore {
+
+  protected personStore: PersonStore = null;
 
   @observable cities: City[] = [];
 
   @observable currentCity: City = null;
 
+  @computed get currentCityPeople() {
+    return filterPeople(this.personStore.people, this.currentCity);
+  }
+
   @observable isFetching: boolean = false;
+
+  constructor(personStore: PersonStore) {
+    this.personStore = personStore;
+  }
 
   async fetchCities() {
     if (this.isFetching || this.cities.length > 0)

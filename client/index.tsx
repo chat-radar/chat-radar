@@ -28,9 +28,9 @@ Parse.initialize(app.get('parse appId'));
 // initialize stores
 import { CityStore, ChatStore, PersonStore } from './stores';
 
-const cityStore = new CityStore();
-const chatStore = new ChatStore();
 const personStore = new PersonStore();
+const cityStore = new CityStore(personStore);
+const chatStore = new ChatStore();
 const stores = { cityStore, chatStore, personStore };
 app.set('stores', stores);
 

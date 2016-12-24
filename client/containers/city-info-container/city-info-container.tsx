@@ -7,7 +7,7 @@ import { ListGroup } from '../../components/list-group';
 import { PersonItem } from '../../components/person-item';
 import { CityInfo } from '../../components/city-info';
 import { Spinner } from '../../components/spinner';
-import { getCity, filterPeople } from '../../../utils';
+import { getCity } from '../../../utils';
 
 @observer
 class CityInfoContainer extends React.Component<{}, {}> {
@@ -43,8 +43,7 @@ class CityInfoContainer extends React.Component<{}, {}> {
     if (!this.context.cityStore.currentCity)
       return this.renderNoCity();
 
-    const { inCity } = filterPeople(this.context.personStore.people, this.context.cityStore.currentCity);
-    const items = inCity.map((person) => {
+    const items = this.context.cityStore.currentCityPeople.inCity.map((person) => {
       return (
         <PersonItem
           key={person.id}
