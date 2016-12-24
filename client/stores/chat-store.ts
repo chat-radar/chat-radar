@@ -14,9 +14,12 @@ class ChatStore {
 
   @observable isFetching: boolean = false;
 
-  async fetchChats() {
-    if (this.isFetching || this.chats.length > 0)
-      return;
+  constructor() {
+    this.fetchChats();
+  }
+
+  protected async fetchChats() {
+    console.log('Fetching chats...');
 
     this.isFetching = true;
 

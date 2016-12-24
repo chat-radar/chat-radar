@@ -6,11 +6,21 @@ import { filterPeople } from '../../utils';
 
 class CityStore {
 
+  protected query: Parse.Query;
+
+  protected subscription;
+
   protected personStore: PersonStore = null;
 
   @observable cities: City[] = [];
 
-  @observable currentCity: City = null;
+  @observable currentCityId: string = null;
+
+  @computed get currentCity() {
+    if (!this.currentCityId || this.cities.length < 1)
+      return null;
+    return this.cities.find((city: City) => city.id === this.currentCityId) || null;
+  };
 
   @computed get currentCityPeople() {
     return filterPeople(this.personStore.people, this.currentCity);
@@ -20,18 +30,20 @@ class CityStore {
 
   constructor(personStore: PersonStore) {
     this.personStore = personStore;
+
+    this.query = new Parse.Query(City)
+      .ascending('name');
+    this.fetchCities();
+    this.subscribe();
   }
 
-  async fetchCities() {
-    if (this.isFetching || this.cities.length > 0)
-      return;
+  protected async fetchCities() {
+    console.log('Fetching cities...');
 
     this.isFetching = true;
 
     try {
-      this.cities = await (new Parse.Query(City))
-        .ascending('name')
-        .find();
+      this.cities = await this.query.find();
     } catch (err) {
       console.error(err);
     }
@@ -39,9 +51,17 @@ class CityStore {
     this.isFetching = false;
   }
 
+  protected subscribe() {
+    this.subscription = (<any>this.query).subscribe();
+
+    this.subscription.on('open', () => console.log('Started cities subscriber'));
+    this.subscription.on('create', () => this.fetchCities());
+    this.subscription.on('update', () => this.fetchCities());
+    this.subscription.on('delete', () => this.fetchCities());
+  }
+
   async selectCityById(id: string) {
-    await this.fetchCities();
-    this.currentCity = this.cities.find((city: City) => city.id === id) || null;
+    this.currentCityId = id;
   }
 
 }

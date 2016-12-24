@@ -57,14 +57,6 @@ router.stateRegistry.register({
   views: {
     '@': CitiesListContainer,
   },
-  resolve: [{
-    token: 'cities',
-    resolveFn: () => {
-      chatStore.fetchChats();
-      cityStore.fetchCities();
-      personStore.fetchPeople();
-    },
-  }],
 });
 
 router.stateRegistry.register({
@@ -77,9 +69,7 @@ router.stateRegistry.register({
     token: 'city',
     deps: ['$transition$'],
     resolveFn: (trans) => {
-      chatStore.fetchChats();
       cityStore.selectCityById(trans.params().cityId);
-      personStore.fetchPeople();
     },
   }],
 });
