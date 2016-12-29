@@ -72,7 +72,7 @@ class CityInfo extends React.Component<ICityInfoProps, ICityInfoState> {
     return (
       <div className='city-info' style={{backgroundImage: this.props.photoUrl ? `url(${this.props.photoUrl}?width=640)` : null }}>
         <div className='city-info-nav'>
-          <UISref to='root.cities'>
+          <UISref to='cities'>
             <a className='city-info-nav-link fa fa-2x fa-angle-left' />
           </UISref>
         </div>

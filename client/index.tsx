@@ -52,7 +52,8 @@ router.stateRegistry.register({
 });
 
 router.stateRegistry.register({
-  name: 'root.cities',
+  name: 'cities',
+  parent: 'root',
   url: '/',
   views: {
     '@': CitiesListContainer,
@@ -60,7 +61,8 @@ router.stateRegistry.register({
 });
 
 router.stateRegistry.register({
-  name: 'root.city',
+  name: 'city',
+  parent: 'root',
   url: '/:cityId',
   views: {
     '@': CityInfoContainer,

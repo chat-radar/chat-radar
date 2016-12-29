@@ -38,7 +38,7 @@ class CitiesListContainer extends React.Component<ICitiesListContainerProps, {}>
       const lastSeen = Math.max.apply(null, people.inCity.map(c => c.get('lastSeen') as number));
 
       return (
-        <UISref key={city.id} to='root.city' params={{cityId: city.id}}>
+        <UISref key={city.id} to='city' params={{cityId: city.id}}>
           <ListGroupItem>
             <ListGroupItemHeading>{cityName}</ListGroupItemHeading>
             <ListGroupItemText>
