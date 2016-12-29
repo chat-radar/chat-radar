@@ -49,7 +49,9 @@ module.exports = {
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.NoErrorsPlugin(),
     new HtmlWebpackPlugin({
-      template: conf.path.src('index.html'),
+      template: conf.path.src('index.ejs'),
+      title: 'Chat Radar',
+      ga: false,
     }),
     new webpack.HotModuleReplacementPlugin(),
   ],
@@ -77,6 +79,9 @@ module.exports = {
     'webpack-hot-middleware/client',
     `./${conf.path.src('index')}`,
   ],
+  externals: {
+    ga: 'ga',
+  },
   ts: {
     silent: true,
   },

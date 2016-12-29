@@ -78,9 +78,27 @@ router.stateRegistry.register({
 
 router.urlRouterProvider.otherwise('/');
 
-router.start();
+// initialize analytics
+try {
+  const ga = require('ga');
+
+  if (!process.env.GA_ID)
+    throw new Error('Google Analitycs ID not defined');
+
+  ga('create', process.env.GA_ID, 'auto');
+
+  router.transitionService.onSuccess({}, () => {
+    const url = router.stateService.href(router.stateService.current, router.stateService.params).substring(1);
+    ga('set', 'page', url);
+    ga('send', 'pageview');
+  });
+} catch (err) {
+  logger.error(err.toString());
+}
 
 // initialize moment
 moment.locale('ru');
 
+// here we go!
+router.start();
 ReactDOM.render(<Root {...stores} />, document.getElementById('root'));
