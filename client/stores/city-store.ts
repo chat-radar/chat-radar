@@ -14,7 +14,7 @@ class CityStore {
 
   @observable cities: City[] = [];
 
-  @observable currentCityId: string = null;
+  @observable protected currentCityId: string = null;
 
   @computed get currentCity() {
     if (!this.currentCityId || this.cities.length < 1)

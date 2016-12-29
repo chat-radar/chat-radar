@@ -40,6 +40,7 @@ app.set('router', router);
 
 import { Root } from './components/root';
 import { MapContainer } from './containers/map-container';
+import { ChatsListContainer } from './containers/chats-list-container';
 import { CitiesListContainer } from './containers/cities-list-container';
 import { CityInfoContainer } from './containers/city-info-container';
 
@@ -52,8 +53,17 @@ router.stateRegistry.register({
 });
 
 router.stateRegistry.register({
-  name: 'cities',
+  name: 'chats',
   parent: 'root',
+  url: '/',
+  views: {
+    '@': ChatsListContainer,
+  },
+});
+
+router.stateRegistry.register({
+  name: 'cities',
+  parent: 'chats',
   url: '/',
   views: {
     '@': CitiesListContainer,
@@ -62,7 +72,7 @@ router.stateRegistry.register({
 
 router.stateRegistry.register({
   name: 'city',
-  parent: 'root',
+  parent: 'chats',
   url: '/:cityId',
   views: {
     '@': CityInfoContainer,

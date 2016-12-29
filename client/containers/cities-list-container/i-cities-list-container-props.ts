@@ -1,9 +1,9 @@
 import { CityStore, ChatStore, PersonStore } from '../../stores';
 
-interface ICityInfoContainerProps {
+interface ICitiesListContainerProps {
   personStore: PersonStore;
   cityStore: CityStore;
   chatStore: ChatStore;
 };
 
-export default ICityInfoContainerProps;
+export default ICitiesListContainerProps;

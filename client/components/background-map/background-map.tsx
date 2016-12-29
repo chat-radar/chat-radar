@@ -47,6 +47,9 @@ class BackgroundMap extends React.Component<IBackgroundMapProps, IBackgroundMapS
   }
 
   protected renderMarkers() {
+    if (this.props.currentChat === null)
+      return null;
+
     return this.props.cities
       .map((city) => {
         const people = filterPeople(this.props.people, city);
@@ -55,7 +58,7 @@ class BackgroundMap extends React.Component<IBackgroundMapProps, IBackgroundMapS
           return null;
 
         const key = city.id;
-        const file = this.props.markerFile;
+        const file = this.props.currentChat.get('marker');
         const onClick = this.props.onCityClick;
 
         return { key, city, people, file, onClick };

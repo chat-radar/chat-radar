@@ -6,10 +6,13 @@ class ChatStore {
 
   @observable chats: Chat[] = [];
 
+  @observable protected currentChatId: string = null;
+
   @computed get currentChat(): Chat {
-    if (this.chats.length < 1)
-      return null;
-    return this.chats[0];
+    return null;
+    // if (this.chats.length < 1)
+    //   return null;
+    // return this.chats[0];
   }
 
   @observable isFetching: boolean = false;

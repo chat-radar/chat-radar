@@ -18,22 +18,17 @@ class MapContainer extends React.Component<IMapContainerProps, {}> {
   }
 
   render() {
-    if (this.props.chatStore.currentChat === null
-     || this.props.cityStore.cities.length < 1
-     || this.props.personStore.people.length < 1)
-      return null;
-
     const cities = this.props.cityStore.cities;
     const people = this.props.personStore.people;
     const currentCity = this.props.cityStore.currentCity;
-    const markerFile = this.props.chatStore.currentChat.get('marker');
+    const currentChat = this.props.chatStore.currentChat;
 
     return (
       <BackgroundMap
         cities={cities}
         people={people}
         currentCity={currentCity}
-        markerFile={markerFile}
+        currentChat={currentChat}
         onCityClick={this.handleCityClick.bind(this)}
       />
     );

@@ -1,11 +1,10 @@
-import { City, Person } from '../../api';
-import * as Parse from 'parse';
+import { City, Person, Chat } from '../../api';
 
 interface IBackgroundMapProps {
   cities: City[];
   people: Person[];
   currentCity?: City;
-  markerFile: Parse.File;
+  currentChat: Chat;
   onCityClick: Function;
 };
 
