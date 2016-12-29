@@ -7,7 +7,7 @@ interface IBackgroundMapMarkerProps {
     inCity: Person[];
     online: Person[];
   };
-  file: Parse.File;
+  file?: Parse.File;
   onClick: Function;
 };
 

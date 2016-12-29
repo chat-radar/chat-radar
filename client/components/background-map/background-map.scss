@@ -12,6 +12,7 @@
     height: 32px !important;
     margin-top: -16px !important;
     margin-left: -16px !important;
+    outline: 0;
   }
   &-marker {
     cursor: pointer;
@@ -19,8 +20,10 @@
     &-icon {
       width: 32px;
       height: 32px;
+      background-image: url('marker.svg');
       background-position: center;
       background-size: cover;
+      position: relative;
     }
     &-offline &-icon {
       filter: grayscale(100%);

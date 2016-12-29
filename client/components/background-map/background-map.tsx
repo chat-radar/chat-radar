@@ -52,7 +52,7 @@ class BackgroundMap extends React.Component<IBackgroundMapProps, IBackgroundMapS
 
     return this.props.cities
       .map((city) => {
-        const people = filterPeople(this.props.people, city);
+        const people = filterPeople(this.props.people, this.props.currentChat, city);
 
         if (people.inCity.length < 1)
           return null;

@@ -19,7 +19,7 @@ class BackgroundMapMarker extends React.Component<IBackgroundMapMarkerProps, {}>
       lat: parseFloat(this.props.city.get('geo').latitude),
       lon: parseFloat(this.props.city.get('geo').longitude),
     };
-    const backgroundImage = `url('${this.props.file.url()}')`;
+    const backgroundImage = this.props.file ? `url('${this.props.file.url()}')` : null;
     const title = getCity(this.props.city.get('address'), this.props.city.get('name'));
     const onlineCount = this.props.people.online.length;
 
