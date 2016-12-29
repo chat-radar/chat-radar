@@ -36,7 +36,6 @@ import * as middlewares from './middlewares';
 
 express.use('/api', middlewares.parseServerMiddleware);
 express.use('/dashboard', middlewares.basicAuthMiddleware, middlewares.parseDashboardMiddleware);
-express.get('/vultr', (_req, res: Express.Response) => res.redirect('http://www.vultr.com/?ref=6842617'));
 express.use(middlewares.staticMiddleware);
 express.get('*', (_req, res: Express.Response) => res.redirect('/'));
 
