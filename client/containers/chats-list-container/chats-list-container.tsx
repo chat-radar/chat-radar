@@ -28,7 +28,7 @@ class ChatsListContainer extends React.Component<IChatsListContainerProps, {}> {
 
     const items = this.props.chatStore.chats.map((chat: Chat) => {
       return (
-        <UISref key={chat.id} to='chats'>
+        <UISref key={chat.id} to='chats.cities' params={{chatId: chat.id}}>
           <ListGroupItem>
             <ListGroupItemHeading>{chat.get('title')}</ListGroupItemHeading>
             <ListGroupItemText>

@@ -28,7 +28,7 @@ class CitiesListContainer extends React.Component<ICitiesListContainerProps, {}>
       return this.renderSpinner();
 
     const items = this.props.cityStore.cities.map((city: City) => {
-      const people = filterPeople(this.props.personStore.people, city);
+      const people = filterPeople(this.props.personStore.people, this.props.chatStore.currentChat, city);
 
       if (people.inCity.length < 1)
         return null;
@@ -38,7 +38,7 @@ class CitiesListContainer extends React.Component<ICitiesListContainerProps, {}>
       const lastSeen = Math.max.apply(null, people.inCity.map(c => c.get('lastSeen') as number));
 
       return (
-        <UISref key={city.id} to='city' params={{cityId: city.id}}>
+        <UISref key={city.id} to='.city' params={{cityId: city.id}}>
           <ListGroupItem>
             <ListGroupItemHeading>{cityName}</ListGroupItemHeading>
             <ListGroupItemText>

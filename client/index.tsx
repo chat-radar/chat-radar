@@ -28,9 +28,9 @@ Parse.initialize(app.get('parse appId'));
 // initialize stores
 import { CityStore, ChatStore, PersonStore } from './stores';
 
-const personStore = new PersonStore();
-const cityStore = new CityStore(personStore);
 const chatStore = new ChatStore();
+const personStore = new PersonStore();
+const cityStore = new CityStore(personStore, chatStore);
 const stores = { cityStore, chatStore, personStore };
 app.set('stores', stores);
 
@@ -59,26 +59,39 @@ router.stateRegistry.register({
   views: {
     '@': ChatsListContainer,
   },
+  resolve: [{
+    token: 'chats',
+    resolveFn: () => {
+      chatStore.selectChatById(null);
+      cityStore.selectCityById(null);
+    },
+  }],
 });
 
 router.stateRegistry.register({
-  name: 'cities',
-  parent: 'chats',
-  url: '/',
+  name: 'chats.cities',
+  url: '^/:chatId',
   views: {
     '@': CitiesListContainer,
   },
+  resolve: [{
+    token: 'chats.cities',
+    deps: ['$transition$'],
+    resolveFn: (trans) => {
+      chatStore.selectChatById(trans.params().chatId);
+      cityStore.selectCityById(null);
+    },
+  }],
 });
 
 router.stateRegistry.register({
-  name: 'city',
-  parent: 'chats',
+  name: 'chats.cities.city',
   url: '/:cityId',
   views: {
     '@': CityInfoContainer,
   },
   resolve: [{
-    token: 'city',
+    token: 'chats.cities.city',
     deps: ['$transition$'],
     resolveFn: (trans) => {
       cityStore.selectCityById(trans.params().cityId);

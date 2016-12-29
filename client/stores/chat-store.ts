@@ -9,10 +9,9 @@ class ChatStore {
   @observable protected currentChatId: string = null;
 
   @computed get currentChat(): Chat {
-    return null;
-    // if (this.chats.length < 1)
-    //   return null;
-    // return this.chats[0];
+    if (!this.currentChatId || this.chats.length < 1)
+      return null;
+    return this.chats.find((chat: Chat) => chat.id === this.currentChatId) || null;
   }
 
   @observable isFetching: boolean = false;
@@ -33,6 +32,10 @@ class ChatStore {
     }
 
     this.isFetching = false;
+  }
+
+  async selectChatById(id: string) {
+    this.currentChatId = id;
   }
 
 }

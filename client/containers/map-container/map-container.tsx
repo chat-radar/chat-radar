@@ -14,7 +14,7 @@ const router: UIRouterReact = app.get('router');
 class MapContainer extends React.Component<IMapContainerProps, {}> {
 
   handleCityClick(city: City) {
-    router.stateService.go('city', { cityId: city.id });
+    router.stateService.go('chats.cities.city', { cityId: city.id });
   }
 
   render() {

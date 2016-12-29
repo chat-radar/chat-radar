@@ -1,6 +1,7 @@
 import { observable, computed } from 'mobx';
 import * as Parse from 'parse';
 import PersonStore from './person-store';
+import ChatStore from './chat-store';
 import { City } from '../api';
 import { filterPeople } from '../../utils';
 
@@ -11,6 +12,8 @@ class CityStore {
   protected subscription;
 
   protected personStore: PersonStore = null;
+
+  protected chatStore: ChatStore = null;
 
   @observable cities: City[] = [];
 
@@ -23,13 +26,14 @@ class CityStore {
   };
 
   @computed get currentCityPeople() {
-    return filterPeople(this.personStore.people, this.currentCity);
+    return filterPeople(this.personStore.people, this.chatStore.currentChat, this.currentCity);
   }
 
   @observable isFetching: boolean = false;
 
-  constructor(personStore: PersonStore) {
+  constructor(personStore: PersonStore, chatStore: ChatStore) {
     this.personStore = personStore;
+    this.chatStore = chatStore;
 
     this.query = new Parse.Query(City)
       .ascending('name');
