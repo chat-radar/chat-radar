@@ -82,7 +82,6 @@ class CitiesListContainer extends React.Component<ICitiesListContainerProps, {}>
             </SidebarHeaderCol>
           </SidebarHeaderRow>
         </SidebarHeader>
-
         {this.renderList()}
         <SidebarFooter />
       </Sidebar>
