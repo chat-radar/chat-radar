@@ -22,9 +22,7 @@
 
   &-header,
   &-footer {
-    padding: 1.25rem;
     position: relative;
-    text-align: center;
 
     h1,
     h2,
@@ -40,6 +38,7 @@
 
       &-row {
         display: table;
+        border-spacing: 1.25rem;
       }
       &-col {
         display: table-cell;
@@ -53,7 +52,6 @@
       &-nav {
 
         &-link {
-          // margin-right: 1.5rem;
 
           &,
           &:hover,
@@ -73,5 +71,7 @@
 
   &-footer {
     font-size: .8em;
+    padding: 1.25rem;
+    text-align: center;
   }
 }
