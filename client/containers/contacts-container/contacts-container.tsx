@@ -3,7 +3,7 @@ import { Sidebar, SidebarHeader, SidebarHeaderRow, SidebarHeaderCol, SidebarCont
 import { MainMenu } from '../../components/main-menu';
 import { UISref } from 'ui-router-react';
 
-class AboutContainer extends React.Component<{}, {}> {
+class ContactsContainer extends React.Component<{}, {}> {
 
   render() {
     return (
@@ -24,9 +24,7 @@ class AboutContainer extends React.Component<{}, {}> {
           </SidebarHeaderRow>
         </SidebarHeader>
         <SidebarContent>
-          <p>С помощью бота Chat Radar ты можешь отметить свое местоположение и найти друзей поблизости.</p>
-          <p>Для того, чтобы отметиться на карте, напиши <code>Chat Radar мой город &lt;город&gt;</code> в любом чате, где есть бот Chat Radar. Отправь <code>Chat Radar справка</code> для просмотра всех доступных команд.</p>
-          <p>Список всех доступных чатов можно найти на <UISref to='chats'><a>главной странице</a></UISref>.</p>
+          <p>Любые пожелания, вы можете отправлять на мой e-mail: <a href='mailto:chatradar@yandex.ru'>chatradar@yandex.ru</a></p>
         </SidebarContent>
         <SidebarFooter />
       </Sidebar>
@@ -35,4 +33,4 @@ class AboutContainer extends React.Component<{}, {}> {
 
 }
 
-export default AboutContainer;
+export default ContactsContainer;

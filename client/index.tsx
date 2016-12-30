@@ -44,6 +44,7 @@ import { ChatsListContainer } from './containers/chats-list-container';
 import { CitiesListContainer } from './containers/cities-list-container';
 import { CityInfoContainer } from './containers/city-info-container';
 import { AboutContainer } from './containers/about-container';
+import { ContactsContainer } from './containers/contacts-container';
 
 router.stateRegistry.register({
   name: 'root',
@@ -59,6 +60,15 @@ router.stateRegistry.register({
   url: '/about',
   views: {
     '@': AboutContainer,
+  },
+});
+
+router.stateRegistry.register({
+  name: 'contacts',
+  parent: 'root',
+  url: '/contacts',
+  views: {
+    '@': ContactsContainer,
   },
 });
 

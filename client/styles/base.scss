@@ -37,3 +37,8 @@ a {
     color: lighten($brand-primary, 10%);
   }
 }
+
+// code
+code {
+  color: darken($brand-primary, 10%);
+}
