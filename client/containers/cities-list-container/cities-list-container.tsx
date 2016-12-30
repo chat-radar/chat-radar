@@ -65,7 +65,12 @@ class CitiesListContainer extends React.Component<ICitiesListContainerProps, {}>
 
     return (
       <Sidebar>
-        <SidebarHeader />
+        <SidebarHeader>
+          <UISref to='^'>
+            <a className='sidebar-header-nav-link fa fa-2x fa-angle-left' />
+          </UISref>
+          <h1>Chat Radar</h1>
+        </SidebarHeader>
         {this.renderList()}
         <SidebarFooter />
       </Sidebar>
