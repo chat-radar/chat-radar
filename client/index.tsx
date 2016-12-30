@@ -43,12 +43,22 @@ import { MapContainer } from './containers/map-container';
 import { ChatsListContainer } from './containers/chats-list-container';
 import { CitiesListContainer } from './containers/cities-list-container';
 import { CityInfoContainer } from './containers/city-info-container';
+import { AboutContainer } from './containers/about-container';
 
 router.stateRegistry.register({
   name: 'root',
   abstract: true,
   views: {
     background: MapContainer,
+  },
+});
+
+router.stateRegistry.register({
+  name: 'about',
+  parent: 'root',
+  url: '/about',
+  views: {
+    '@': AboutContainer,
   },
 });
 

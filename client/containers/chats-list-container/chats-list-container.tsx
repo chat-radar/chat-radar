@@ -47,7 +47,6 @@ class ChatsListContainer extends React.Component<IChatsListContainerProps, {}> {
   }
 
   render() {
-
     return (
       <Sidebar>
         <SidebarHeader />
