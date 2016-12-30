@@ -1,11 +1,12 @@
 import * as React from 'react';
 import ICitiesListContainerProps from './i-cities-list-container-props';
 import { observer, inject } from 'mobx-react';
-import { Sidebar, SidebarHeader, SidebarContent, SidebarFooter } from '../../components/sidebar';
+import { Sidebar, SidebarHeader, SidebarHeaderRow, SidebarHeaderCol, SidebarContent, SidebarFooter } from '../../components/sidebar';
 import { City } from '../../api';
 import { UISref } from 'ui-router-react';
 import { ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText } from '../../components/list-group';
 import { Spinner } from '../../components/spinner';
+import { MainMenu } from '../../components/main-menu';
 import * as moment from 'moment';
 import { getCity, filterPeople } from '../../../utils';
 
@@ -67,11 +68,21 @@ class CitiesListContainer extends React.Component<ICitiesListContainerProps, {}>
     return (
       <Sidebar>
         <SidebarHeader>
-          <UISref to='^'>
-            <a className='sidebar-header-nav-link fa fa-2x fa-angle-left' />
-          </UISref>
-          <h1>Chat Radar</h1>
+          <SidebarHeaderRow>
+            <SidebarHeaderCol>
+              <UISref to='^'>
+                <a className='sidebar-header-nav-link fa fa-2x fa-angle-left' />
+              </UISref>
+            </SidebarHeaderCol>
+            <SidebarHeaderCol expand={true}>
+              <h1>Chat Radar</h1>
+            </SidebarHeaderCol>
+            <SidebarHeaderCol>
+              <MainMenu />
+            </SidebarHeaderCol>
+          </SidebarHeaderRow>
         </SidebarHeader>
+
         {this.renderList()}
         <SidebarFooter />
       </Sidebar>

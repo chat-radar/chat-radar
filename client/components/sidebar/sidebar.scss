@@ -14,12 +14,17 @@
 
   &-content {
     padding: 1.25rem;
+
+    p:last-child {
+      margin: 0;
+    }
   }
 
   &-header,
   &-footer {
     padding: 1.25rem;
     position: relative;
+    text-align: center;
 
     h1,
     h2,
@@ -28,19 +33,27 @@
     h5,
     p {
       margin: 0;
-      display: inline-block;
-      vertical-align: middle;
     }
   }
 
   &-header {
 
+      &-row {
+        display: table;
+      }
+      &-col {
+        display: table-cell;
+        vertical-align: middle;
+
+        &-expand {
+          width: 99%;
+        }
+      }
+
       &-nav {
 
         &-link {
-          display: inline-block;
-          vertical-align: middle;
-          margin-right: 1.5rem;
+          // margin-right: 1.5rem;
 
           &,
           &:hover,
@@ -60,6 +73,5 @@
 
   &-footer {
     font-size: .8em;
-    text-align: center;
   }
 }

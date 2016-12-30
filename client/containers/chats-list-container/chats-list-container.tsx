@@ -1,11 +1,12 @@
 import * as React from 'react';
 import IChatsListContainerProps from './i-chats-list-container-props';
 import { observer, inject } from 'mobx-react';
-import { Sidebar, SidebarHeader, SidebarContent, SidebarFooter } from '../../components/sidebar';
+import { Sidebar, SidebarHeader, SidebarHeaderRow, SidebarHeaderCol, SidebarContent, SidebarFooter } from '../../components/sidebar';
 import { Chat } from '../../api';
 import { UISref } from 'ui-router-react';
 import { ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText } from '../../components/list-group';
 import { Spinner } from '../../components/spinner';
+import { MainMenu } from '../../components/main-menu';
 
 @inject('chatStore')
 @observer
@@ -49,7 +50,16 @@ class ChatsListContainer extends React.Component<IChatsListContainerProps, {}> {
   render() {
     return (
       <Sidebar>
-        <SidebarHeader />
+        <SidebarHeader>
+          <SidebarHeaderRow>
+            <SidebarHeaderCol expand={true}>
+              <h1>Chat Radar</h1>
+            </SidebarHeaderCol>
+            <SidebarHeaderCol>
+              <MainMenu />
+            </SidebarHeaderCol>
+          </SidebarHeaderRow>
+        </SidebarHeader>
         {this.renderList()}
         <SidebarFooter />
       </Sidebar>
