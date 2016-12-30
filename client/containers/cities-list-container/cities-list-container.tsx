@@ -24,7 +24,8 @@ class CitiesListContainer extends React.Component<ICitiesListContainerProps, {}>
   }
 
   renderList() {
-    if (this.props.cityStore.isFetching || this.props.personStore.isFetching)
+    if ((this.props.cityStore.cities.length < 1 && this.props.cityStore.isFetching)
+     || (this.props.personStore.people.length < 1 && this.props.personStore.isFetching))
       return this.renderSpinner();
 
     const items = this.props.cityStore.cities.map((city: City) => {

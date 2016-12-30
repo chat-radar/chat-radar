@@ -32,7 +32,8 @@ class CityInfoContainer extends React.Component<ICityInfoContainerProps, {}> {
   }
 
   renderList() {
-    if (this.props.cityStore.isFetching || this.props.personStore.isFetching)
+    if ((this.props.cityStore.cities.length < 1 && this.props.cityStore.isFetching)
+     || (this.props.personStore.people.length < 1 && this.props.personStore.isFetching))
       return this.renderSpinner();
 
     if (!this.props.cityStore.currentCity)
