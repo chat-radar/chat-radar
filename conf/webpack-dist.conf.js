@@ -57,7 +57,7 @@ module.exports = {
     new ExtractTextPlugin('chat-radar-[contenthash].css'),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production'),
-      'process.env.PARSE_SERVER_URL': JSON.stringify('http://chat-radar.roland.black/api'),
+      'process.env.PARSE_SERVER_URL': JSON.stringify('http://chatradar.space/api'),
       'process.env.GA_ID': JSON.stringify('UA-89572762-1'),
     }),
     new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor-[hash].js' }),
