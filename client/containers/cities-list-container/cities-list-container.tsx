@@ -16,15 +16,21 @@ import { getCity, filterPeople } from '../../../utils';
 @observer
 class CitiesListContainer extends React.Component<ICitiesListContainerProps, {}> {
 
-  renderEmpty() {
+  protected renderDescription() {
+    if (this.props.chatStore.currentChat === null || !this.props.chatStore.currentChat.get('description'))
+      return null;
+    return (<SidebarContent>{this.props.chatStore.currentChat.get('description')}</SidebarContent>);
+  }
+
+  protected renderEmpty() {
     return (<SidebarContent>Городов пока нет</SidebarContent>);
   }
 
-  renderSpinner() {
+  protected renderSpinner() {
     return (<Spinner />);
   }
 
-  renderList() {
+  protected renderList() {
     if ((this.props.cityStore.cities.length < 1 && this.props.cityStore.isFetching)
      || (this.props.personStore.people.length < 1 && this.props.personStore.isFetching))
       return this.renderSpinner();
@@ -82,6 +88,7 @@ class CitiesListContainer extends React.Component<ICitiesListContainerProps, {}>
             </SidebarHeaderCol>
           </SidebarHeaderRow>
         </SidebarHeader>
+        {this.renderDescription()}
         {this.renderList()}
         <SidebarFooter />
       </Sidebar>
