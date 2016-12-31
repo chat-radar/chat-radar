@@ -19,7 +19,9 @@ class CitiesListContainer extends React.Component<ICitiesListContainerProps, {}>
   protected renderDescription() {
     if (this.props.chatStore.currentChat === null || !this.props.chatStore.currentChat.get('description'))
       return null;
-    return (<SidebarContent>{this.props.chatStore.currentChat.get('description')}</SidebarContent>);
+
+    const __html = this.props.chatStore.currentChat.get('description');
+    return (<SidebarContent><div dangerouslySetInnerHTML={{ __html }} /></SidebarContent>);
   }
 
   protected renderEmpty() {
