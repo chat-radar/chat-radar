@@ -13,7 +13,7 @@ class PersonStore {
   @observable isFetching: boolean = false;
 
   constructor() {
-    this.query = new Parse.Query(Person);
+    this.query = new Parse.Query(Person).limit(1000);
     this.fetchPeople();
     this.subscribe();
   }

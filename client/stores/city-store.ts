@@ -36,7 +36,8 @@ class CityStore {
     this.chatStore = chatStore;
 
     this.query = new Parse.Query(City)
-      .ascending('name');
+      .ascending('name')
+      .limit(1000);
     this.fetchCities();
     this.subscribe();
   }
