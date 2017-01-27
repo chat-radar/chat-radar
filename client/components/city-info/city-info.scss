@@ -1,6 +1,5 @@
 .city-info {
   text-align: left;
-  padding: 1.25rem;
   background-position: center;
   background-size: cover;
   background-color: #12DAB1;
@@ -18,32 +17,19 @@
     background-color: rgba(black, .25);
   }
 
-  &-nav {
-    margin-bottom: 2rem;
+  &-header,
+  &-content {
     position: relative;
-    z-index: 2;
-
-    &-link {
-
-      &,
-      &:hover,
-      &:focus {
-        color: inherit;
-        text-decoration: none;
-        opacity: .75;
-      }
-
-      &:hover,
-      &:focus {
-        opacity: 1;
-      }
-    }
+    z-index: 3;
   }
 
-  &-header {
-    text-shadow: 0 0 .3rem rgba(black, .25);
-    position: relative;
+  &-content {
+    padding: 1.25rem;
     z-index: 2;
+  }
+
+  &-title {
+    text-shadow: 0 0 .3rem rgba(black, .25);
     margin-bottom: 1rem;
 
     h1,

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import ICityInfoProps from './i-city-info-props';
 import ICityInfoState from './i-city-info-state';
-import { UISref } from 'ui-router-react';
+// import { UISref } from 'ui-router-react';
 import * as moment from 'moment';
 import { splitGrades } from '../../../utils';
 import './city-info.scss';
@@ -71,16 +71,14 @@ class CityInfo extends React.Component<ICityInfoProps, ICityInfoState> {
   render() {
     return (
       <div className='city-info' style={{backgroundImage: this.props.photoUrl ? `url(${this.props.photoUrl}?width=640)` : null }}>
-        <div className='city-info-nav'>
-          <UISref to='^'>
-            <a className='city-info-nav-link fa fa-2x fa-angle-left' />
-          </UISref>
+        {this.props.children ? <div className='city-info-header'>{this.props.children}</div> : null}
+        <div className='city-info-content'>
+          <div className='city-info-title'>
+            <h1>{this.props.cityName}</h1>
+            <h5 className='text-muted'>{this.props.fullName}</h5>
+          </div>
+          {this.renderProps()}
         </div>
-        <div className='city-info-header'>
-          <h1>{this.props.cityName}</h1>
-          <h5 className='text-muted'>{this.props.fullName}</h5>
-        </div>
-        {this.renderProps()}
       </div>
     );
   }

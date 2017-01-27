@@ -1,8 +1,9 @@
 import * as React from 'react';
 import ICityInfoContainerProps from './i-cities-list-container-props';
 import { observer, inject } from 'mobx-react';
-import { Sidebar, SidebarContent, SidebarFooter } from '../../components/sidebar';
-// import * as Parse from 'parse';
+import { UISref } from 'ui-router-react';
+import { Sidebar, SidebarHeader, SidebarHeaderRow, SidebarHeaderCol, SidebarContent, SidebarFooter } from '../../components/sidebar';
+import { MainMenu } from '../../components/main-menu';
 import { ListGroup } from '../../components/list-group';
 import { PersonItem } from '../../components/person-item';
 import { CityInfo } from '../../components/city-info';
@@ -27,7 +28,23 @@ class CityInfoContainer extends React.Component<ICityInfoContainerProps, {}> {
         inception={city.get('inception')}
         area={city.get('area')}
         population={city.get('population')}
-      />
+      >
+        <SidebarHeader>
+          <SidebarHeaderRow>
+            <SidebarHeaderCol>
+              <UISref to='^'>
+                <a className='sidebar-header-nav-link fa fa-2x fa-angle-left' />
+              </UISref>
+            </SidebarHeaderCol>
+            <SidebarHeaderCol expand={true}>
+              <h1>Chat Radar</h1>
+            </SidebarHeaderCol>
+            <SidebarHeaderCol>
+              <MainMenu />
+            </SidebarHeaderCol>
+          </SidebarHeaderRow>
+        </SidebarHeader>
+      </CityInfo>
     );
   }
 
