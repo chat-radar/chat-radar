@@ -52,6 +52,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: conf.path.src('index.ejs'),
       title: 'Chat Radar',
+      favicon: conf.path.src('favicon.ico'),
       ga: true,
     }),
     new ExtractTextPlugin('chat-radar-[contenthash].css'),

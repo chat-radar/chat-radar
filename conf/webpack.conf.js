@@ -51,6 +51,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: conf.path.src('index.ejs'),
       title: 'Chat Radar',
+      favicon: conf.path.src('favicon.ico'),
       ga: false,
     }),
     new webpack.HotModuleReplacementPlugin(),
