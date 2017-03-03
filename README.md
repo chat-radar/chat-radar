@@ -1,7 +1,17 @@
 # Chat Radar
+> Group chat geotagging
 
-С помощью бота Chat Radar ты можешь отметить свое местоположение и найти друзей поблизости.
+Interactive map for group chats: find buddies near you.
 
-Для того, чтобы отметиться на карте, напиши `Chat Radar мой город <город>` в любом чате, где есть бот Chat Radar. Отправь `Chat Radar справка` для просмотра всех доступных команд.
+![Chat Radar interface screenshot](https://share.roland.black/file/black-roland-share/d5160696-fb6b-11e6-97a8-54271e687f63/chat-radar-screenshot.png
+)
 
-Список всех доступных чатов можно найти на [главной странице](http://chatradar.space/).
+## Features
+
+* Displaying online/offline cities on the map
+* Information and photos for each city
+* Displaying chat participants in each city
+
+## Licensing
+
+The code in this project is licensed under MIT license.
